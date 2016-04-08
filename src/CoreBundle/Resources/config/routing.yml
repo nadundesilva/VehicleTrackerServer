@@ -1,3 +1,15 @@
-core_homepage:
+core_index:
     path:     /
-    defaults: { _controller: CoreBundle:Default:index }
+    defaults: { _controller: CoreBundle:Index:index }
+
+core_login:
+    path:     /register
+    defaults: { _controller: CoreBundle:Authenticator:register }
+
+core_login:
+    path:     /login
+    defaults: { _controller: CoreBundle:Authenticator:login }
+
+core_login:
+    path:     /logout
+    defaults: { _controller: CoreBundle:Authenticator:logout }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CoreBundle\Entity\FillUp" table="fill_up">
+    <indexes>
+      <index name="fk_fillup_vehicle_idx" columns="vehicle"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="pricePerLitre" type="decimal" column="price_per_litre" precision="6" scale="2" nullable="false"/>
+    <field name="odoMeterReading" type="integer" column="odo_meter_reading" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="stationLat" type="decimal" column="station_lat" precision="7" scale="4" nullable="false"/>
+    <field name="stationLong" type="decimal" column="station_long" precision="7" scale="4" nullable="false"/>
+    <field name="timestamp" type="datetime" column="timestamp" nullable="false">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
+    <many-to-one field="vehicle" target-entity="Vehicle" fetch="LAZY">
+      <join-columns>
+        <join-column name="vehicle" referenced-column-name="license_plate_no"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
