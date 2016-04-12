@@ -8,14 +8,19 @@ namespace CoreBundle\Entity;
 class FillUp
 {
     /**
-     * @var string
-     */
-    private $pricePerLitre;
-
-    /**
      * @var integer
      */
     private $odoMeterReading;
+
+    /**
+     * @var string
+     */
+    private $litres;
+
+    /**
+     * @var string
+     */
+    private $price;
 
     /**
      * @var string
@@ -42,30 +47,11 @@ class FillUp
      */
     private $vehicle;
 
-
     /**
-     * Set pricePerLitre
-     *
-     * @param string $pricePerLitre
-     *
-     * @return FillUp
+     * @var \CoreBundle\Entity\User
      */
-    public function setPricePerLitre($pricePerLitre)
-    {
-        $this->pricePerLitre = $pricePerLitre;
+    private $creator;
 
-        return $this;
-    }
-
-    /**
-     * Get pricePerLitre
-     *
-     * @return string
-     */
-    public function getPricePerLitre()
-    {
-        return $this->pricePerLitre;
-    }
 
     /**
      * Set odoMeterReading
@@ -89,6 +75,54 @@ class FillUp
     public function getOdoMeterReading()
     {
         return $this->odoMeterReading;
+    }
+
+    /**
+     * Set litres
+     *
+     * @param string $litres
+     *
+     * @return FillUp
+     */
+    public function setLitres($litres)
+    {
+        $this->litres = $litres;
+
+        return $this;
+    }
+
+    /**
+     * Get litres
+     *
+     * @return string
+     */
+    public function getLitres()
+    {
+        return $this->litres;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return FillUp
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 
     /**
@@ -195,6 +229,30 @@ class FillUp
     public function getVehicle()
     {
         return $this->vehicle;
+    }
+
+    /**
+     * Set creator
+     *
+     * @param \CoreBundle\Entity\User $creator
+     *
+     * @return FillUp
+     */
+    public function setCreator(\CoreBundle\Entity\User $creator = null)
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * Get creator
+     *
+     * @return \CoreBundle\Entity\User
+     */
+    public function getCreator()
+    {
+        return $this->creator;
     }
 }
 

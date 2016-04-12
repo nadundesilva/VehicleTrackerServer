@@ -32,6 +32,11 @@ class MiscCost
      */
     private $vehicle;
 
+    /**
+     * @var \CoreBundle\Entity\User
+     */
+    private $creator;
+
 
     /**
      * Set type
@@ -137,6 +142,30 @@ class MiscCost
     public function getVehicle()
     {
         return $this->vehicle;
+    }
+
+    /**
+     * Set creator
+     *
+     * @param \CoreBundle\Entity\User $creator
+     *
+     * @return MiscCost
+     */
+    public function setCreator(\CoreBundle\Entity\User $creator = null)
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * Get creator
+     *
+     * @return \CoreBundle\Entity\User
+     */
+    public function getCreator()
+    {
+        return $this->creator;
     }
 }
 

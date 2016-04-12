@@ -10,6 +10,11 @@ class CheckIn
     /**
      * @var string
      */
+    private $description;
+
+    /**
+     * @var string
+     */
     private $lat;
 
     /**
@@ -32,6 +37,35 @@ class CheckIn
      */
     private $vehicle;
 
+    /**
+     * @var \CoreBundle\Entity\User
+     */
+    private $creator;
+
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return CheckIn
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
     /**
      * Set lat
@@ -137,6 +171,30 @@ class CheckIn
     public function getVehicle()
     {
         return $this->vehicle;
+    }
+
+    /**
+     * Set creator
+     *
+     * @param \CoreBundle\Entity\User $creator
+     *
+     * @return CheckIn
+     */
+    public function setCreator(\CoreBundle\Entity\User $creator = null)
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * Get creator
+     *
+     * @return \CoreBundle\Entity\User
+     */
+    public function getCreator()
+    {
+        return $this->creator;
     }
 }
 

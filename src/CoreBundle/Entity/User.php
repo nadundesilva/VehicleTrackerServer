@@ -23,6 +23,16 @@ class User
     private $password;
 
     /**
+     * @var boolean
+     */
+    private $active = '0';
+
+    /**
+     * @var \DateTime
+     */
+    private $lastLoginTime = 'CURRENT_TIMESTAMP';
+
+    /**
      * @var string
      */
     private $username;
@@ -110,6 +120,54 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return User
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set lastLoginTime
+     *
+     * @param \DateTime $lastLoginTime
+     *
+     * @return User
+     */
+    public function setLastLoginTime($lastLoginTime)
+    {
+        $this->lastLoginTime = $lastLoginTime;
+
+        return $this;
+    }
+
+    /**
+     * Get lastLoginTime
+     *
+     * @return \DateTime
+     */
+    public function getLastLoginTime()
+    {
+        return $this->lastLoginTime;
     }
 
     /**

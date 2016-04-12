@@ -3,14 +3,20 @@
   <entity name="CoreBundle\Entity\FillUp" table="fill_up">
     <indexes>
       <index name="fk_fillup_vehicle_idx" columns="vehicle"/>
+      <index name="fk_fill_up_user1_idx" columns="creator"/>
     </indexes>
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="pricePerLitre" type="decimal" column="price_per_litre" precision="6" scale="2" nullable="false"/>
     <field name="odoMeterReading" type="integer" column="odo_meter_reading" nullable="false">
       <options>
         <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="litres" type="decimal" column="litres" precision="6" scale="2" nullable="false"/>
+    <field name="price" type="string" column="price" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
       </options>
     </field>
     <field name="stationLat" type="decimal" column="station_lat" precision="7" scale="4" nullable="false"/>
@@ -23,6 +29,11 @@
     <many-to-one field="vehicle" target-entity="Vehicle" fetch="LAZY">
       <join-columns>
         <join-column name="vehicle" referenced-column-name="license_plate_no"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="creator" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="creator" referenced-column-name="username"/>
       </join-columns>
     </many-to-one>
   </entity>

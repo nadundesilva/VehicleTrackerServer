@@ -3,6 +3,7 @@
   <entity name="CoreBundle\Entity\MiscCost" table="misc_cost">
     <indexes>
       <index name="fk_misc_cost_vehicle1_idx" columns="vehicle"/>
+      <index name="fk_misc_cost_user1_idx" columns="creator"/>
     </indexes>
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
@@ -21,6 +22,11 @@
     <many-to-one field="vehicle" target-entity="Vehicle" fetch="LAZY">
       <join-columns>
         <join-column name="vehicle" referenced-column-name="license_plate_no"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="creator" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="creator" referenced-column-name="username"/>
       </join-columns>
     </many-to-one>
   </entity>
