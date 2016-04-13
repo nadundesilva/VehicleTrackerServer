@@ -1,17 +1,13 @@
-core_index:
-    path:     /
-    defaults: { _controller: CoreBundle:Index:index }
-
 core_register:
-    path:     /register
-    defaults: { _controller: CoreBundle:Authenticator:register }
+    path:     /signUp
+    defaults: { _controller: CoreBundle:Authentication:signUp }
     methods:  ['POST']
 
 core_login:
     path:     /login
-    defaults: { _controller: CoreBundle:Authenticator:login }
+    defaults: { _controller: CoreBundle:Authentication:login }
     methods:  ['POST']
 
 core_logout:
     path:     /logout
-    defaults: { _controller: CoreBundle:Authenticator:logout }
+    defaults: { _controller: CoreBundle:Authentication:logout }

@@ -5,7 +5,7 @@ parameters:
 
 services:
     constants:
-        class: CoreBundle\Utils\Constants\Retriever
+        class: CoreBundle\Util\Constants\Retriever
 
     user_repo:
         class: Doctrine\ORM\EntityRepository
@@ -14,7 +14,7 @@ services:
           - %entity.user%
 
     login_authenticator:
-        class: CoreBundle\Utils\LoginAuthenticator
+        class: CoreBundle\Util\LoginAuthenticator
         arguments: ['@session', '@user_repo', '@constants']
 
 

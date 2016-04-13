@@ -4,6 +4,8 @@ namespace CoreBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class CoreBundle extends Bundle
-{
+/*
+ * For handling the core functionalities
+ */
+class CoreBundle extends Bundle {
 }

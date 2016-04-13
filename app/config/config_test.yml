@@ -14,3 +14,14 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+doctrine:
+    dbal:
+        driver:   pdo_sqlite
+        host:     ""
+        port:     ""
+        dbname:   test_db_sqlite
+        path:     web/test_db_sqlite
+        user:     ""
+        password: ""
+        charset:  UTF8
