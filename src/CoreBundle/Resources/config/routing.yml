@@ -1,5 +1,5 @@
 core_register:
-    path:     /signUp
+    path:     /sign-up
     defaults: { _controller: CoreBundle:Authentication:signUp }
     methods:  ['POST']
 
@@ -11,3 +11,7 @@ core_login:
 core_logout:
     path:     /logout
     defaults: { _controller: CoreBundle:Authentication:logout }
+
+core_home:
+    path:     /
+    defaults: { _controller: CoreBundle:Home:home }

@@ -7,4 +7,5 @@ namespace CoreBundle\Util\Constants;
  */
 class Database {
     public $USER_REPOSITORY = "CoreBundle:User";
+    public $VEHICLE_REPOSITORY = "VehicleBundle:Vehicle";
 }

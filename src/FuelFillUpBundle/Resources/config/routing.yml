@@ -1,0 +1,3 @@
+fuel_fill_up_homepage:
+    path:     /
+    defaults: { _controller: FuelFillUpBundle:Default:index }

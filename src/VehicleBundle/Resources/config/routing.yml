@@ -1,0 +1,14 @@
+vehicle_add:
+    path:     /create
+    defaults: { _controller: VehicleBundle:Manage:createUpdate }
+    methods:  ['POST']
+
+vehicle_update:
+    path:     /update
+    defaults: { _controller: VehicleBundle:Manage:createUpdate }
+    methods:  ['PUT']
+
+vehicle_delete:
+    path:     /delete
+    defaults: { _controller: VehicleBundle:Manage:delete }
+    methods:  ['DELETE']

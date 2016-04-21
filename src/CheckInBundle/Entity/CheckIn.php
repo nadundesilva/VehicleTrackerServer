@@ -1,6 +1,9 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace CheckInBundle\Entity;
+
+use CoreBundle\Entity\User;
+use VehicleBundle\Entity\Vehicle;
 
 /**
  * CheckIn
@@ -33,12 +36,12 @@ class CheckIn
     private $id;
 
     /**
-     * @var \CoreBundle\Entity\Vehicle
+     * @var Vehicle
      */
     private $vehicle;
 
     /**
-     * @var \CoreBundle\Entity\User
+     * @var User
      */
     private $creator;
 
@@ -152,11 +155,11 @@ class CheckIn
     /**
      * Set vehicle
      *
-     * @param \CoreBundle\Entity\Vehicle $vehicle
+     * @param Vehicle $vehicle
      *
      * @return CheckIn
      */
-    public function setVehicle(\CoreBundle\Entity\Vehicle $vehicle = null)
+    public function setVehicle(Vehicle $vehicle = null)
     {
         $this->vehicle = $vehicle;
 
@@ -166,7 +169,7 @@ class CheckIn
     /**
      * Get vehicle
      *
-     * @return \CoreBundle\Entity\Vehicle
+     * @return Vehicle
      */
     public function getVehicle()
     {
@@ -176,11 +179,11 @@ class CheckIn
     /**
      * Set creator
      *
-     * @param \CoreBundle\Entity\User $creator
+     * @param User $creator
      *
      * @return CheckIn
      */
-    public function setCreator(\CoreBundle\Entity\User $creator = null)
+    public function setCreator(User $creator = null)
     {
         $this->creator = $creator;
 
@@ -190,7 +193,7 @@ class CheckIn
     /**
      * Get creator
      *
-     * @return \CoreBundle\Entity\User
+     * @return User
      */
     public function getCreator()
     {

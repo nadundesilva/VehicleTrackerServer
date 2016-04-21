@@ -10,6 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 /*
  * For handling core authentication functionalities
+ *
+ * sign up
+ * login
+ * logout
  */
 class AuthenticationController extends Controller {
     /**
@@ -50,21 +54,19 @@ class AuthenticationController extends Controller {
                     $response_text = $this->get('constants')->response->STATUS_SUCCESS;
 
                     //TODO : Create an email to be sent to verify account
-                }
-                catch (UniqueConstraintViolationException $e) {
+                } catch (UniqueConstraintViolationException $e) {
                     $message = $e->getMessage();
-                    echo "\n\n" . $message . "\n\n";
                     if (strpos($message, 'user.username')) {
-                        $response_text = $this->get('constants')->response->STATUS_DUPLICATE_USERNAME;
-                    } else if (strpos($message, 'user.email')) {
-                        $response_text = $this->get('constants')->response->STATUS_DUPLICATE_EMAIL;
+                        $response_text = $this->get('constants')->response->STATUS_USER_DUPLICATE_USERNAME;
+                    } else {
+                        $response_text = $this->get('constants')->response->STATUS_USER_DUPLICATE_EMAIL;
                     }
                 }
             } else {
                 $response_text = $this->get('constants')->response->STATUS_NO_ARGUMENTS_PROVIDED;
             }
         } else {
-            $response_text = $this->get('constants')->response->STATUS_ALREADY_LOGGED_IN;
+            $response_text = $this->get('constants')->response->STATUS_USER_ALREADY_LOGGED_IN;
         }
 
         $response = new Response(json_encode(array($this->get('constants')->response->STATUS => $response_text)));
@@ -82,30 +84,34 @@ class AuthenticationController extends Controller {
      * @return Response
      */
     public function loginAction(Request $request) {
-        $request = json_decode($request->getContent());
+        $request_data = json_decode($request->getContent());
 
-        if (isset($request)) {
-            $username = $request->user->username;
-            $password = $request->user->password;
+        if (isset($request_data)) {
+            $username = $request_data->user->username;
+            $password = $request_data->user->password;
             $user = $this->getDoctrine()->getRepository($this->get('constants')->database->USER_REPOSITORY)->find($username);
             if ($user) {
                 if (password_verify($password, $user->getPassword())) {
                     if ($user->getActive()) {
-                        $user->setLastLoginTime(new \DateTime());
-                        $em = $this->getDoctrine()->getManager();
-                        $em->persist($user);
-                        $em->flush();
+                        if ($user->getVerified()) {
+                            $user->setLastLoginTime(new \DateTime());
+                            $em = $this->getDoctrine()->getManager();
+                            $em->persist($user);
+                            $em->flush();
 
-                        $this->get('session')->set($this->get('constants')->session->USERNAME, $user->getUsername());
-                        $response_text = $this->get('constants')->response->STATUS_SUCCESS;
+                            $this->get('session')->set($this->get('constants')->session->USERNAME, $user->getUsername());
+                            $response_text = $this->get('constants')->response->STATUS_SUCCESS;
+                        } else {
+                            $response_text = $this->get('constants')->response->STATUS_USER_NOT_VERIFIED;
+                        }
                     } else {
-                        $response_text = $this->get('constants')->response->STATUS_NOT_VERIFIED;
+                        $response_text = $this->get('constants')->response->STATUS_USER_NOT_ACTIVE;
                     }
                 } else {
-                    $response_text = $this->get('constants')->response->STATUS_WRONG_PASSWORD;
+                    $response_text = $this->get('constants')->response->STATUS_USER_WRONG_PASSWORD;
                 }
             } else {
-                $response_text = $this->get('constants')->response->STATUS_NOT_REGISTERED;
+                $response_text = $this->get('constants')->response->STATUS_USER_NOT_REGISTERED;
             }
         } else {
             $response_text = $this->get('constants')->response->STATUS_NO_ARGUMENTS_PROVIDED;

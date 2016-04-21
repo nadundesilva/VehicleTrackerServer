@@ -1,0 +1,3 @@
+misc_cost_homepage:
+    path:     /
+    defaults: { _controller: MiscCostBundle:Default:index }

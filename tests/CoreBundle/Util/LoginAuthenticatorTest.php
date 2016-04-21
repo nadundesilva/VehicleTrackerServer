@@ -3,19 +3,17 @@
 namespace Tests\CoreBundle\Util;
 
 use CoreBundle\Entity\User;
-use CoreBundle\Util\Constants\Retriever;
 use CoreBundle\Util\LoginAuthenticator;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
+use Tests\BaseUnitTest;
 
 /*
  * Unit Tests
  *
- * For testing the login authenticator
+ * For testing the core login authenticator
  * src\CoreBundle\Util\LoginAuthenticator
  */
-class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
+class LoginAuthenticatorTest extends BaseUnitTest {
     /**
      * Unit Test
      *
@@ -26,12 +24,6 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
      * The user is not in the database
      */
     public function testAuthenticateUserForNonExistingUser() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock session
-        $session = new Session(new MockArraySessionStorage());
-
         // Creating a mock user
         $user = $this->getMock(User::class);
         $user->expects($this->never())
@@ -48,10 +40,11 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
 
         // Running the tested method
         /** @var EntityRepository $user_repository */
-        $login_authenticator = new LoginAuthenticator($session, $user_repository, $constants);
+        $login_authenticator = new LoginAuthenticator($this->session, $user_repository, $this->constants);
+        $user = $login_authenticator->authenticateUser();
 
         // Assertions
-        $this->assertNotTrue($login_authenticator->authenticateUser());
+        $this->assertNull($user);
     }
     
     /**
@@ -64,12 +57,8 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
      * The user is not in the database
      */
     public function testAuthenticateUserForLoggedInNonExistingUser() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
         // Creating a mock session
-        $session = new Session(new MockArraySessionStorage());
-        $session->set($constants->session->USERNAME, 'testNonExistentUser');
+        $this->session->set($this->constants->session->USERNAME, 'testNonExistentUser');
 
         // Creating a mock user
         $user = $this->getMock(User::class);
@@ -87,10 +76,11 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
 
         // Running the tested method
         /** @var EntityRepository $user_repository */
-        $login_authenticator = new LoginAuthenticator($session, $user_repository, $constants);
+        $login_authenticator = new LoginAuthenticator($this->session, $user_repository, $this->constants);
+        $user = $login_authenticator->authenticateUser();
 
         // Assertions
-        $this->assertNotTrue($login_authenticator->authenticateUser());
+        $this->assertNull($user);
     }
     
     /**
@@ -103,16 +93,9 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
      * The user is in the database but active is set to false
      */
     public function testAuthenticateUserForNonActiveExistingUser() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock session
-        $session = new Session(new MockArraySessionStorage());
-        $session->set($constants->session->USERNAME, 'testUser');
-
         // Creating a mock user
         $user = $this->getMock(User::class);
-        $user->expects($this->once())
+        $user->expects($this->never())
             ->method('getActive')
             ->will($this->returnValue(false));
 
@@ -120,16 +103,17 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
         $user_repository = $this->getMockBuilder(EntityRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $user_repository->expects($this->once())
+        $user_repository->expects($this->never())
             ->method('find')
             ->will($this->returnValue($user));
 
         // Running the tested method
         /** @var EntityRepository $user_repository */
-        $login_authenticator = new LoginAuthenticator($session, $user_repository, $constants);
+        $login_authenticator = new LoginAuthenticator($this->session, $user_repository, $this->constants);
+        $user = $login_authenticator->authenticateUser();
 
         // Assertions
-        $this->assertNotTrue($login_authenticator->authenticateUser());
+        $this->assertNull($user);
     }
 
     /**
@@ -142,12 +126,8 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
      * The user is in the database but active is set to false
      */
     public function testAuthenticateUserForLoggedInNonActiveExistingUser() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
         // Creating a mock session
-        $session = new Session(new MockArraySessionStorage());
-        $session->set($constants->session->USERNAME, 'testUser');
+        $this->session->set($this->constants->session->USERNAME, 'testUser');
 
         // Creating a mock user
         $user = $this->getMock(User::class);
@@ -165,10 +145,11 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
 
         // Running the tested method
         /** @var EntityRepository $user_repository */
-        $login_authenticator = new LoginAuthenticator($session, $user_repository, $constants);
+        $login_authenticator = new LoginAuthenticator($this->session, $user_repository, $this->constants);
+        $user = $login_authenticator->authenticateUser();
 
         // Assertions
-        $this->assertNotTrue($login_authenticator->authenticateUser());
+        $this->assertNull($user);
     }
 
     /**
@@ -181,12 +162,6 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
      * The user is in the database and active is set to true
      */
     public function testAuthenticateUserForNotLoggedInActiveExistingUser() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock session
-        $session = new Session(new MockArraySessionStorage());
-
         // Creating a mock user
         $user = $this->getMock(User::class);
         $user->expects($this->never())
@@ -203,10 +178,11 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
 
         // Running the tested method
         /** @var EntityRepository $user_repository */
-        $login_authenticator = new LoginAuthenticator($session, $user_repository, $constants);
+        $login_authenticator = new LoginAuthenticator($this->session, $user_repository, $this->constants);
+        $user = $login_authenticator->authenticateUser();
 
         // Assertions
-        $this->assertNotTrue($login_authenticator->authenticateUser());
+        $this->assertNull($user);
     }
 
     /**
@@ -219,12 +195,8 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
      * The user is in the database and active is set to true
      */
     public function testAuthenticateUserForLoggedInActiveExistingUser() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
         // Creating a mock session
-        $session = new Session(new MockArraySessionStorage());
-        $session->set($constants->session->USERNAME, 'testUser');
+        $this->session->set($this->constants->session->USERNAME, 'testUser');
 
         // Creating a mock user
         $user = $this->getMock(User::class);
@@ -242,9 +214,11 @@ class LoginAuthenticatorTest extends \PHPUnit_Framework_TestCase {
 
         // Running the tested method
         /** @var EntityRepository $user_repository */
-        $login_authenticator = new LoginAuthenticator($session, $user_repository, $constants);
+        $login_authenticator = new LoginAuthenticator($this->session, $user_repository, $this->constants);
+        $user = $login_authenticator->authenticateUser();
 
         // Assertions
-        $this->assertTrue($login_authenticator->authenticateUser());
+        $this->assertInstanceOf('CoreBundle\Entity\User', $user);
+        $this->assertNotNull($user);
     }
 }

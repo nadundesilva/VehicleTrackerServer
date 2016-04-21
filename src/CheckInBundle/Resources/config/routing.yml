@@ -1,0 +1,3 @@
+check_in_homepage:
+    path:     /
+    defaults: { _controller: CheckInBundle:Default:index }

@@ -26,32 +26,49 @@ class LoadTestUserData extends AbstractFixture implements OrderedFixtureInterfac
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager) {
-        {
-            $testUser = new User();
-            $testUser->setUsername('testUser');
-            $testUser->setFirstName('testFirstName');
-            $testUser->setLastName('testLastName');
-            $testUser->setPassword(password_hash('testPassword', PASSWORD_DEFAULT));
-            $testUser->setEmail('testEmail@gmail.com');
-            $testUser->setActive(true);
-            $testUser->setLastLoginTime(new \DateTime());
+        // Creating general users
+        $i = 0;
+        while ($i < 10) {
+            $testUser = (new User())
+                ->setUsername('testUser' . $i)
+                ->setFirstName('testFirstName' . $i)
+                ->setLastName('testLastName' . $i)
+                ->setPassword(password_hash('testPassword' . $i, PASSWORD_DEFAULT))
+                ->setEmail('testEmail' . $i . '@gmail.com')
+                ->setVerified(true)
+                ->setActive(true)
+                ->setLastLoginTime(new \DateTime());
             $manager->persist($testUser);
             $manager->flush();
-            $this->addReference('test-user', $testUser);
+            $this->addReference('test-user-' . $i, $testUser);
+            $i++;
         }
-        {
-            $testUser = new User();
-            $testUser->setUsername('testInactiveUser');
-            $testUser->setFirstName('testInactiveFirstName');
-            $testUser->setLastName('testInactiveLastName');
-            $testUser->setPassword(password_hash('testInactivePassword', PASSWORD_DEFAULT));
-            $testUser->setEmail('testInactiveEmail@gmail.com');
-            $testUser->setActive(false);
-            $testUser->setLastLoginTime(new \DateTime());
-            $manager->persist($testUser);
-            $manager->flush();
-            $this->addReference('test-inactive-user', $testUser);
-        }
+
+        // Creating inactive user
+        $testInactiveUser = (new User())
+            ->setUsername('testInactiveUser')
+            ->setFirstName('testInactiveFirstName')
+            ->setLastName('testInactiveLastName')
+            ->setPassword(password_hash('testInactivePassword', PASSWORD_DEFAULT))
+            ->setEmail('testInactiveEmail@gmail.com')
+            ->setVerified(true)
+            ->setActive(false)
+            ->setLastLoginTime(new \DateTime());
+        $manager->persist($testInactiveUser);
+        $manager->flush();
+
+        // Creating enverified user
+        $testUnverifiedUser = (new User())
+            ->setUsername('testUnverifiedUser')
+            ->setFirstName('testUnverifiedFirstName')
+            ->setLastName('testUnverifiedLastName')
+            ->setPassword(password_hash('testUnverifiedPassword', PASSWORD_DEFAULT))
+            ->setEmail('testUnverifiedEmail@gmail.com')
+            ->setVerified(false)
+            ->setActive(true)
+            ->setLastLoginTime(new \DateTime());
+        $manager->persist($testUnverifiedUser);
+        $manager->flush();
     }
 
     /**

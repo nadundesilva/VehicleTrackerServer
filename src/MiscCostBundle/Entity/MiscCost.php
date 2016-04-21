@@ -1,6 +1,8 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace MiscCostBundle\Entity;
+use CoreBundle\Entity\User;
+use VehicleBundle\Entity\Vehicle;
 
 /**
  * MiscCost
@@ -28,12 +30,12 @@ class MiscCost
     private $id;
 
     /**
-     * @var \CoreBundle\Entity\Vehicle
+     * @var Vehicle
      */
     private $vehicle;
 
     /**
-     * @var \CoreBundle\Entity\User
+     * @var User
      */
     private $creator;
 
@@ -123,11 +125,11 @@ class MiscCost
     /**
      * Set vehicle
      *
-     * @param \CoreBundle\Entity\Vehicle $vehicle
+     * @param Vehicle $vehicle
      *
      * @return MiscCost
      */
-    public function setVehicle(\CoreBundle\Entity\Vehicle $vehicle = null)
+    public function setVehicle(Vehicle $vehicle = null)
     {
         $this->vehicle = $vehicle;
 
@@ -137,7 +139,7 @@ class MiscCost
     /**
      * Get vehicle
      *
-     * @return \CoreBundle\Entity\Vehicle
+     * @return Vehicle
      */
     public function getVehicle()
     {
@@ -147,11 +149,11 @@ class MiscCost
     /**
      * Set creator
      *
-     * @param \CoreBundle\Entity\User $creator
+     * @param User $creator
      *
      * @return MiscCost
      */
-    public function setCreator(\CoreBundle\Entity\User $creator = null)
+    public function setCreator(User $creator = null)
     {
         $this->creator = $creator;
 
@@ -161,7 +163,7 @@ class MiscCost
     /**
      * Get creator
      *
-     * @return \CoreBundle\Entity\User
+     * @return User
      */
     public function getCreator()
     {

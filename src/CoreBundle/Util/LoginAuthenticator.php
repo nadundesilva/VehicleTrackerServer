@@ -44,13 +44,13 @@ class LoginAuthenticator {
             $user = $this->user_repo->find($username);
             if ($user) {
                 if ($user->getActive()) {
-                    return true;
+                    return $user;
                 }
             }
         }
 
         // Destroys the session
         $this->session->invalidate();
-        return false;
+        return null;
     }
 }

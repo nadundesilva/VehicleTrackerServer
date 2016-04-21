@@ -30,7 +30,12 @@ class User
     /**
      * @var boolean
      */
-    private $active = '0';
+    private $verified = '0';
+
+    /**
+     * @var boolean
+     */
+    private $active = '1';
 
     /**
      * @var \DateTime
@@ -152,6 +157,30 @@ class User
     }
 
     /**
+     * Set verified
+     *
+     * @param boolean $verified
+     *
+     * @return User
+     */
+    public function setVerified($verified)
+    {
+        $this->verified = $verified;
+
+        return $this;
+    }
+
+    /**
+     * Get verified
+     *
+     * @return boolean
+     */
+    public function getVerified()
+    {
+        return $this->verified;
+    }
+
+    /**
      * Set active
      *
      * @param boolean $active
@@ -230,7 +259,7 @@ class User
      *
      * @return User
      */
-    public function addVehicle(\CoreBundle\Entity\Vehicle $vehicle)
+    public function addVehicle(\VehicleBundle\Entity\Vehicle $vehicle)
     {
         $this->vehicle[] = $vehicle;
 
@@ -240,9 +269,9 @@ class User
     /**
      * Remove vehicle
      *
-     * @param \CoreBundle\Entity\Vehicle $vehicle
+     * @param \VehicleBundle\Entity\Vehicle $vehicle
      */
-    public function removeVehicle(\CoreBundle\Entity\Vehicle $vehicle)
+    public function removeVehicle(\VehicleBundle\Entity\Vehicle $vehicle)
     {
         $this->vehicle->removeElement($vehicle);
     }

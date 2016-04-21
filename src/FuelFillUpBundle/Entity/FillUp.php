@@ -1,6 +1,8 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace FuelFillUpBundle\Entity;
+use CoreBundle\Entity\User;
+use VehicleBundle\Entity\Vehicle;
 
 /**
  * FillUp
@@ -43,12 +45,12 @@ class FillUp
     private $id;
 
     /**
-     * @var \CoreBundle\Entity\Vehicle
+     * @var Vehicle
      */
     private $vehicle;
 
     /**
-     * @var \CoreBundle\Entity\User
+     * @var User
      */
     private $creator;
 
@@ -210,11 +212,11 @@ class FillUp
     /**
      * Set vehicle
      *
-     * @param \CoreBundle\Entity\Vehicle $vehicle
+     * @param Vehicle $vehicle
      *
      * @return FillUp
      */
-    public function setVehicle(\CoreBundle\Entity\Vehicle $vehicle = null)
+    public function setVehicle(Vehicle $vehicle = null)
     {
         $this->vehicle = $vehicle;
 
@@ -224,7 +226,7 @@ class FillUp
     /**
      * Get vehicle
      *
-     * @return \CoreBundle\Entity\Vehicle
+     * @return Vehicle
      */
     public function getVehicle()
     {
@@ -234,11 +236,11 @@ class FillUp
     /**
      * Set creator
      *
-     * @param \CoreBundle\Entity\User $creator
+     * @param User $creator
      *
      * @return FillUp
      */
-    public function setCreator(\CoreBundle\Entity\User $creator = null)
+    public function setCreator(User $creator = null)
     {
         $this->creator = $creator;
 
@@ -248,7 +250,7 @@ class FillUp
     /**
      * Get creator
      *
-     * @return \CoreBundle\Entity\User
+     * @return User
      */
     public function getCreator()
     {

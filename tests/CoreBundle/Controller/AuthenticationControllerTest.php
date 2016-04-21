@@ -2,39 +2,31 @@
 
 namespace Tests\CoreBundle\Controller;
 
-use CoreBundle\Util\Constants\Retriever;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Tests\BaseFunctionalTest;
 
 /*
  * Functional Tests
  *
- * For testing the authentication controller
- * src\CoreBundle\Util\AuthenticationController
+ * For testing the core authentication controller
+ * src\CoreBundle\Controller\AuthenticationController
  */
-class AuthenticationControllerTest extends WebTestCase {
+class AuthenticationFunctionalTest extends BaseFunctionalTest {
     /**
      * Functional Test
      *
-     * Should create a new user and insert into the user table of the database
-     * For when user trying to create the account is already logged in
+     * Should not create a new user in the user table of the database
+     * Should not set the session
+     * For when the user trying to create the account is already logged in
      *
      * The session does not exist
      * The user does not exist in the database
      */
-    public function testSignUpForUserLoggedIn() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserSignUpForUserLoggedIn() {
         // Creating a mock session
-        $session = $client->getContainer()->get('session');
-        $session->set($constants->session->USERNAME, 'testUser');
+        $this->session->set($this->constants->session->USERNAME, 'testUser0');
 
         // Requesting
-        $client->request('POST', '/signUp', array(), array(),
+        $this->client->request('POST', '/sign-up', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -47,65 +39,53 @@ class AuthenticationControllerTest extends WebTestCase {
                 'email' => 'testNewEmail@gmail.com',
             )))
         );
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals($constants->response->STATUS_ALREADY_LOGGED_IN, json_decode($response->getContent())->status);
-        $this->assertNotNull($client->getContainer()->get('session')->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_USER_ALREADY_LOGGED_IN, json_decode($response->getContent())->status);
+        $this->assertNotNull($this->session->get($this->constants->session->USERNAME));
     }
 
     /**
      * Functional Test
      *
-     * Should create a new user and insert into the user table of the database
+     * Should not create a new user in the user table of the database
+     * Should not set the session
      * For when user details are not provided
      *
      * The session does not exist
      * The user does not exist in the database
      */
-    public function testSignUpForUserDetailsNotGiven() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserSignUpForDetailsNotGiven() {
         // Requesting
-        $client->request('POST', '/signUp', array(), array(),
+        $this->client->request('POST', '/sign-up', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
             )
         );
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals($constants->response->STATUS_NO_ARGUMENTS_PROVIDED, json_decode($response->getContent())->status);
-        $this->assertNull($client->getContainer()->get('session')->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_NO_ARGUMENTS_PROVIDED, json_decode($response->getContent())->status);
+        $this->assertNull($this->session->get($this->constants->session->USERNAME));
     }
 
     /**
      * Functional Test
      *
-     * Should create a new user and insert into the user table of the database
+     * Should not create a new user in the user table of the database
+     * Should not set the session
      * For when user details are provided with duplicate email
      *
      * The session does not exist
      * The user does not exist in the database
      */
-    public function testSignUpForDuplicateEmailGiven() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserSignUpForDuplicateEmailGiven() {
         // Requesting
-        $client->request('POST', '/signUp', array(), array(),
+        $this->client->request('POST', '/sign-up', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -115,75 +95,63 @@ class AuthenticationControllerTest extends WebTestCase {
                 'first_name' => 'testNewFirstName',
                 'last_name' => 'testNewLastName',
                 'password' => 'testNewPassword',
-                'email' => 'testEmail@gmail.com',
+                'email' => 'testEmail0@gmail.com',
             )))
         );
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals($constants->response->STATUS_DUPLICATE_EMAIL, json_decode($response->getContent())->status);
-        $this->assertNull($client->getContainer()->get('session')->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_USER_DUPLICATE_EMAIL, json_decode($response->getContent())->status);
+        $this->assertNull($this->session->get($this->constants->session->USERNAME));
     }
 
     /**
      * Functional Test
      *
-     * Should create a new user and insert into the user table of the database
+     * Should not create a new user in the user table of the database
+     * Should not set the session
      * For when user details are provided with duplicate username
      *
      * The session does not exist
      * The user does not exist in the database
      */
-    public function testSignUpForDuplicateUsernameGiven() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserSignUpForDuplicateUsernameGiven() {
         // Requesting
-        $client->request('POST', '/signUp', array(), array(),
+        $this->client->request('POST', '/sign-up', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
             ),
             json_encode(array('user' => array(
-                'username' => 'testUser',
+                'username' => 'testUser0',
                 'first_name' => 'testNewFirstName',
                 'last_name' => 'testNewLastName',
                 'password' => 'testNewPassword',
                 'email' => 'testNewEmail@gmail.com',
             )))
         );
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals($constants->response->STATUS_DUPLICATE_USERNAME, json_decode($response->getContent())->status);
-        $this->assertNull($client->getContainer()->get('session')->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_USER_DUPLICATE_USERNAME, json_decode($response->getContent())->status);
+        $this->assertNull($this->session->get($this->constants->session->USERNAME));
     }
 
     /**
      * Functional Test
      *
-     * Should create a new user and insert into the user table of the database
+     * Should create a new user in the user table of the database
+     * Should set the session
      * For when user details are provided
      *
      * The session does not exist
      * The user does not exist in the database
      */
-    public function testSignUpForUserDetailsGiven() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserSignUpForDetailsGiven() {
         // Requesting
-        $client->request('POST', '/signUp', array(), array(),
+        $this->client->request('POST', '/sign-up', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -196,63 +164,49 @@ class AuthenticationControllerTest extends WebTestCase {
                 'email' => 'testNewEmail@gmail.com',
             )))
         );
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals($constants->response->STATUS_SUCCESS, json_decode($response->getContent())->status);
-        $this->assertNull($client->getContainer()->get('session')->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_SUCCESS, json_decode($response->getContent())->status);
+        $this->assertNull($this->session->get($this->constants->session->USERNAME));
     }
 
     /**
      * Functional Test
      *
-     * Should set the session key username if username and password match
+     * Should not set the session
      * For when the username and password is not provided
      *
      * The user exists in the database
      */
-    public function testLoginForUsernameAndPasswordNotGiven() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserLoginForUsernameAndPasswordNotGiven() {
         // Requesting
-        $client->request('POST', '/login', array(), array(),
+        $this->client->request('POST', '/login', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
             )
         );
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals($constants->response->STATUS_NO_ARGUMENTS_PROVIDED, json_decode($response->getContent())->status);
-        $this->assertNull($client->getContainer()->get('session')->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_NO_ARGUMENTS_PROVIDED, json_decode($response->getContent())->status);
+        $this->assertNull($this->session->get($this->constants->session->USERNAME));
     }
 
     /**
      * Functional Test
      *
-     * Should set the session key username if username and password match
+     * Should not set the session
      * For when the username and password is provided for a non existing user
      *
      * The user exists in the database
      */
-    public function testLoginForUsernameOfNonExistingUserGiven() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserLoginForUsernameOfNonExistingUserGiven() {
         // Requesting
-        $client->request('POST', '/login', array(), array(),
+        $this->client->request('POST', '/login', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -262,67 +216,53 @@ class AuthenticationControllerTest extends WebTestCase {
                 'password' => 'testNonExistentPassword',
             )))
         );
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals($constants->response->STATUS_NOT_REGISTERED, json_decode($response->getContent())->status);
-        $this->assertNull($client->getContainer()->get('session')->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_USER_NOT_REGISTERED, json_decode($response->getContent())->status);
+        $this->assertNull($this->session->get($this->constants->session->USERNAME));
     }
 
     /**
      * Functional Test
      *
-     * Should set the session key username if username and password match
+     * Should not set the session
      * For when the username is provided for a non existing user but password is wrong
      *
      * The user exists in the database
      */
-    public function testLoginForUsernameAndWrongPasswordOfExistingUserGiven() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserLoginForUsernameAndWrongPasswordOfExistingUserGiven() {
         // Requesting
-        $client->request('POST', '/login', array(), array(),
+        $this->client->request('POST', '/login', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
             ),
             json_encode(array('user' => array(
-                'username' => 'testUser',
+                'username' => 'testUser0',
                 'password' => 'testWrongPassword',
             )))
         );
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals($constants->response->STATUS_WRONG_PASSWORD, json_decode($response->getContent())->status);
-        $this->assertNull($client->getContainer()->get('session')->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_USER_WRONG_PASSWORD, json_decode($response->getContent())->status);
+        $this->assertNull($this->session->get($this->constants->session->USERNAME));
     }
 
     /**
      * Functional Test
      *
-     * Should set the session key username if username and password match
+     * Should not set the session
      * For when the username and password is provided for an existing inactive user
      *
      * The user exists in the database
      */
-    public function testLoginForUsernameAndPasswordOfExistingInactiveUserGiven() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserLoginForUsernameAndPasswordOfExistingInactiveUserGiven() {
         // Requesting
-        $client->request('POST', '/login', array(), array(),
+        $this->client->request('POST', '/login', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -332,48 +272,68 @@ class AuthenticationControllerTest extends WebTestCase {
                 'password' => 'testInactivePassword',
             )))
         );
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals($constants->response->STATUS_NOT_VERIFIED, json_decode($response->getContent())->status);
-        $this->assertNull($client->getContainer()->get('session')->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_USER_NOT_ACTIVE, json_decode($response->getContent())->status);
+        $this->assertNull($this->session->get($this->constants->session->USERNAME));
     }
 
     /**
      * Functional Test
      *
-     * Should set the session key username if username and password match
-     * For when the username and password is provided for an existing active user
+     * Should not set the session
+     * For when the username and password is provided for an existing unverified user
      *
      * The user exists in the database
      */
-    public function testLoginForUsernameAndPasswordOfExistingActiveUserGiven() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserLoginForUsernameAndPasswordOfExistingUnverifiedUserGiven() {
         // Requesting
-        $client->request('POST', '/login', array(), array(),
+        $this->client->request('POST', '/login', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
             ),
             json_encode(array('user' => array(
-                'username' => 'testUser',
-                'password' => 'testPassword',
+                'username' => 'testUnverifiedUser',
+                'password' => 'testUnverifiedPassword',
             )))
         );
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals($constants->response->STATUS_SUCCESS, json_decode($response->getContent())->status);
-        $this->assertEquals('testUser', $client->getContainer()->get('session')->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_USER_NOT_VERIFIED, json_decode($response->getContent())->status);
+        $this->assertNull($this->session->get($this->constants->session->USERNAME));
+    }
+
+    /**
+     * Functional Test
+     *
+     * Should set the session key username
+     * For when the username and password is provided for an existing active user
+     *
+     * The user exists in the database
+     */
+    public function testUserLoginForUsernameAndPasswordOfExistingActiveUserGiven() {
+        // Requesting
+        $this->client->request('POST', '/login', array(), array(),
+            array(
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_X-Requested-With' => 'XMLHttpRequest',
+            ),
+            json_encode(array('user' => array(
+                'username' => 'testUser0',
+                'password' => 'testPassword0',
+            )))
+        );
+        $response = $this->client->getResponse();
+
+        // Assertions
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_SUCCESS, json_decode($response->getContent())->status);
+        $this->assertEquals('testUser0', $this->session->get($this->constants->session->USERNAME));
     }
 
     /**
@@ -384,24 +344,17 @@ class AuthenticationControllerTest extends WebTestCase {
      *
      * The session is already set
      */
-    public function testLogoutForAllScenarios() {
-        // Creating a constant retriever
-        $constants = new Retriever();
-
-        // Creating a mock client
-        $client = static::createClient();
-
+    public function testUserLogoutForAllScenarios() {
         // Creating a mock session
-        $session = $client->getContainer()->get('session');
-        $session->set($constants->session->USERNAME, 'testUser');
+        $this->session->set($this->constants->session->USERNAME, 'testUser0');
 
         // Requesting
-        $client->request('GET', '/logout');
-        $response = $client->getResponse();
+        $this->client->request('GET', '/logout');
+        $response = $this->client->getResponse();
 
         // Assertions
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals($constants->response->STATUS_SUCCESS, json_decode($response->getContent())->status);
-        $this->assertNull($session->get($constants->session->USERNAME));
+        $this->assertSuccessfulResponse($response);
+        $this->assertEquals($this->constants->response->STATUS_SUCCESS, json_decode($response->getContent())->status);
+        $this->assertNull($this->session->get($this->constants->session->USERNAME));
     }
 }
