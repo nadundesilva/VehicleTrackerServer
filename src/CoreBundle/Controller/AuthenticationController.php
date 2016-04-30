@@ -30,15 +30,15 @@ class AuthenticationController extends Controller {
      * @return Response
      */
     public function signUpAction(Request $request) {
-        $request = json_decode($request->getContent());
+        $request_data = json_decode($request->getContent());
 
         if (!$this->get('login_authenticator')->authenticateUser()) {
-            if (isset($request)) {
-                $username = $request->user->username;
-                $first_name = $request->user->first_name;
-                $last_name = $request->user->last_name;
-                $password = $request->user->password;
-                $email = $request->user->email;
+            if (isset($request_data) && isset($request_data->user) && isset($request_data->user->username) && isset($request_data->user->first_name) && isset($request_data->user->last_name) && isset($request_data->user->password) && isset($request_data->user->email)) {
+                $username = $request_data->user->username;
+                $first_name = $request_data->user->first_name;
+                $last_name = $request_data->user->last_name;
+                $password = $request_data->user->password;
+                $email = $request_data->user->email;
                 $user = new User();
                 $user->setUsername($username)
                     ->setFirstName($first_name)
@@ -86,7 +86,7 @@ class AuthenticationController extends Controller {
     public function loginAction(Request $request) {
         $request_data = json_decode($request->getContent());
 
-        if (isset($request_data)) {
+        if (isset($request_data) && isset($request_data->user) && isset($request_data->user->username) && isset($request_data->user->password)) {
             $username = $request_data->user->username;
             $password = $request_data->user->password;
             $user = $this->getDoctrine()->getRepository($this->get('constants')->database->USER_REPOSITORY)->find($username);

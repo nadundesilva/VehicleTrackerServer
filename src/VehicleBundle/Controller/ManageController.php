@@ -29,7 +29,7 @@ class ManageController extends Controller {
         $request_data = json_decode($request->getContent());
 
         if ($user = $this->get('login_authenticator')->authenticateUser()) {
-            if (isset($request_data)) {
+            if (isset($request_data) && isset($request_data->vehicle) && isset($request_data->vehicle->name) && isset($request_data->vehicle->license_plate) && isset($request_data->vehicle->description) && isset($request_data->vehicle->fuel_one) && (!isset($request_data->vehicle->bi_fuel) || !$request_data->vehicle->bi_fuel || isset($request_data->vehicle->fuel_two)) && isset($request_data->vehicle->make) && isset($request_data->vehicle->model) && isset($request_data->vehicle->year)) {
                 $name = $request_data->vehicle->name;
                 $license_plate = $request_data->vehicle->license_plate;
                 $description = $request_data->vehicle->description;
