@@ -1,6 +1,9 @@
 <?php
 
 namespace CoreBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use VehicleBundle\Entity\Vehicle;
 
 /**
  * User
@@ -48,7 +51,7 @@ class User
     private $username;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $vehicle;
 
@@ -57,7 +60,7 @@ class User
      */
     public function __construct()
     {
-        $this->vehicle = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->vehicle = new ArrayCollection();
     }
 
     /**
@@ -255,11 +258,11 @@ class User
     /**
      * Add vehicle
      *
-     * @param \CoreBundle\Entity\Vehicle $vehicle
+     * @param Vehicle $vehicle
      *
      * @return User
      */
-    public function addVehicle(\VehicleBundle\Entity\Vehicle $vehicle)
+    public function addVehicle(Vehicle $vehicle)
     {
         $this->vehicle[] = $vehicle;
 
@@ -269,9 +272,9 @@ class User
     /**
      * Remove vehicle
      *
-     * @param \VehicleBundle\Entity\Vehicle $vehicle
+     * @param Vehicle $vehicle
      */
-    public function removeVehicle(\VehicleBundle\Entity\Vehicle $vehicle)
+    public function removeVehicle(Vehicle $vehicle)
     {
         $this->vehicle->removeElement($vehicle);
     }
@@ -279,11 +282,10 @@ class User
     /**
      * Get vehicle
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getVehicle()
     {
         return $this->vehicle;
     }
 }
-

@@ -44,6 +44,6 @@
         <option name="default">CURRENT_TIMESTAMP</option>
       </options>
     </field>
-    <many-to-many field="vehicle" target-entity="VehicleBundle\Entity\Vehicle" mapped-by="user" fetch="LAZY"/>
+    <many-to-many field="vehicle" target-entity="VehicleBundle\Entity\Vehicle" mapped-by="driver" fetch="LAZY"/>
   </entity>
 </doctrine-mapping>

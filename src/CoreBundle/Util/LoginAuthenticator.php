@@ -2,6 +2,7 @@
 
 namespace CoreBundle\Util;
 
+use CoreBundle\Entity\User;
 use CoreBundle\Util\Constants\Retriever;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -35,7 +36,7 @@ class LoginAuthenticator {
      * Returns true if the user had already logged in, the user exists in the database and the user is active
      * Returns false if user had not logged in or, the user does not exist in the database or the user is not active
      *
-     * @return bool
+     * @return User
      */
     public function authenticateUser() {
         // Checking if the user is logged into the system

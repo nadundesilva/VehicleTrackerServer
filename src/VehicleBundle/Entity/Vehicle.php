@@ -1,6 +1,10 @@
 <?php
 
 namespace VehicleBundle\Entity;
+
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
 use CoreBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,41 +15,52 @@ use Doctrine\Common\Collections\Collection;
 class Vehicle
 {
     /**
+     * @Groups({"list", "view"})
      * @var string
      */
     private $name;
 
     /**
+     * @Groups({"list", "view"})
      * @var string
      */
     private $description;
 
     /**
+     * @SerializedName("fuelOne")
+     * @Groups({"view"})
      * @var string
      */
     private $fuelOne;
 
     /**
+     * @SerializedName("fuelTwo")
+     * @Groups({"view"})
      * @var string
      */
     private $fuelTwo;
 
     /**
+     * @Groups({"list", "view"})
      * @var string
      */
     private $make;
 
     /**
+     * @Groups({"list", "view"})
      * @var string
      */
     private $model;
 
     /**
+     * @Groups({"list", "view"})
      * @var integer
      */
     private $year;
 
     /**
+     * @SerializedName("licensePlateNo")
+     * @Groups({"list", "view"})
      * @var string
      */
     private $licensePlateNo;
@@ -316,6 +331,16 @@ class Vehicle
     public function getDriver()
     {
         return $this->driver;
+    }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("owner")
+     * @Groups({"list", "view"})
+     */
+    public function getOwnerID()
+    {
+        return $this->owner->getUsername();
     }
 }
 

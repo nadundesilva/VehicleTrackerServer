@@ -20,6 +20,9 @@ class AppKernel extends Kernel
             new FuelFillUpBundle\FuelFillUpBundle(),
             new MiscCostBundle\MiscCostBundle(),
             new VehicleBundle\VehicleBundle(),
+            
+            // External Libraries
+            new JMS\SerializerBundle\JMSSerializerBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -3,6 +3,16 @@ vehicle_add:
     defaults: { _controller: VehicleBundle:Manage:createUpdate }
     methods:  ['POST']
 
+vehicle_get_all:
+    path:     /get
+    defaults: { _controller: VehicleBundle:View:getAll }
+    methods:  ['GET']
+
+vehicle_get:
+    path:     /get/{license_plate_no}
+    defaults: { _controller: VehicleBundle:View:get }
+    methods:  ['GET']
+
 vehicle_update:
     path:     /update
     defaults: { _controller: VehicleBundle:Manage:createUpdate }
