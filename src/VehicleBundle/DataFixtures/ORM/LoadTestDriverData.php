@@ -14,7 +14,7 @@ use VehicleBundle\Entity\Vehicle;
  *
  * Only used in test environment
  */
-class LoadTestVehicleData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
+class LoadTestDriverData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
     /**
      * @var ContainerInterface
      */
@@ -26,26 +26,23 @@ class LoadTestVehicleData extends AbstractFixture implements OrderedFixtureInter
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager) {
-        // Creating general vehicles
+        // Creating general drivers
         $i = 0;
         while ($i < 10) {
-            $j = 0;
-            while ($j < 10) {
-                $testVehicle = (new Vehicle())
-                    ->setLicensePlateNo('TEST-LPN' . $i . $j)
-                    ->setName('testVehicle' . $i . $j)
-                    ->setDescription('testDescription' . $i . $j)
-                    ->setFuelOne('testFuelOne' . $i . $j)
-                    ->setFuelTwo('testFuelTwo' . $i . $j)
-                    ->setMake('testMake' . $i . $j)
-                    ->setModel('testModel' . $i . $j)
-                    ->setYear(1900 + $i * 10 + $j)
-                    ->setOwner($this->getReference('test-user-' . $i));
-                $manager->persist($testVehicle);
-                $manager->flush();
-                $this->addReference('test-vehicle-' . $i . $j, $testVehicle);
-                $j++;
-            }
+            $vehicle = $this->getReference('test-vehicle-1' . $i);
+            $user = $this->getReference('test-user-0');
+            $vehicle->addDriver($user);
+            $manager->persist($vehicle);
+            $manager->flush();
+            $i++;
+        }
+        $i = 0;
+        while ($i < 10) {
+            $vehicle = $this->getReference('test-vehicle-0' . $i);
+            $user = $this->getReference('test-user-1');
+            $vehicle->addDriver($user);
+            $manager->persist($vehicle);
+            $manager->flush();
             $i++;
         }
     }
@@ -56,7 +53,7 @@ class LoadTestVehicleData extends AbstractFixture implements OrderedFixtureInter
      * @return int
      */
     public function getOrder() {
-        return 2;
+        return 3;
     }
 
     /**

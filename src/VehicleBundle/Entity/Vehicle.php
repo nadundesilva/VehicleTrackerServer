@@ -27,14 +27,14 @@ class Vehicle
     private $description;
 
     /**
-     * @SerializedName("fuelOne")
+     * @SerializedName("fuel_one")
      * @Groups({"view"})
      * @var string
      */
     private $fuelOne;
 
     /**
-     * @SerializedName("fuelTwo")
+     * @SerializedName("fuel_two")
      * @Groups({"view"})
      * @var string
      */
@@ -59,7 +59,6 @@ class Vehicle
     private $year;
 
     /**
-     * @SerializedName("licensePlateNo")
      * @Groups({"list", "view"})
      * @var string
      */

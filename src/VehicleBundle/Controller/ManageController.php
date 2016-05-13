@@ -29,9 +29,9 @@ class ManageController extends Controller {
         $request_data = json_decode($request->getContent());
 
         if ($user = $this->get('login_authenticator')->authenticateUser()) {
-            if (isset($request_data) && isset($request_data->vehicle) && isset($request_data->vehicle->name) && isset($request_data->vehicle->license_plate) && isset($request_data->vehicle->description) && isset($request_data->vehicle->fuel_one) && (!isset($request_data->vehicle->bi_fuel) || !$request_data->vehicle->bi_fuel || isset($request_data->vehicle->fuel_two)) && isset($request_data->vehicle->make) && isset($request_data->vehicle->model) && isset($request_data->vehicle->year)) {
+            if (isset($request_data) && isset($request_data->vehicle) && isset($request_data->vehicle->name) && isset($request_data->vehicle->license_plate_no) && isset($request_data->vehicle->description) && isset($request_data->vehicle->fuel_one) && (!isset($request_data->vehicle->bi_fuel) || !$request_data->vehicle->bi_fuel || isset($request_data->vehicle->fuel_two)) && isset($request_data->vehicle->make) && isset($request_data->vehicle->model) && isset($request_data->vehicle->year)) {
                 $name = $request_data->vehicle->name;
-                $license_plate = $request_data->vehicle->license_plate;
+                $license_plate_no = $request_data->vehicle->license_plate_no;
                 $description = $request_data->vehicle->description;
                 $fuel_one = $request_data->vehicle->fuel_one;
                 if (isset($request_data->vehicle->bi_fuel) && $request_data->vehicle->bi_fuel) {
@@ -45,12 +45,12 @@ class ManageController extends Controller {
                 if ($request->isMethod('POST')) {
                     $vehicle = new Vehicle();
                 } else {
-                    $vehicle = $this->getDoctrine()->getRepository($this->get('constants')->database->VEHICLE_REPOSITORY)->find($license_plate);
+                    $vehicle = $this->getDoctrine()->getRepository($this->get('constants')->database->VEHICLE_REPOSITORY)->find($request_data->vehicle->original_license_plate_no);
                 }
                 if (isset($vehicle)) {
-                    if ($request->isMethod('POST') || ($request->isMethod('PUT') && $vehicle->getOwner()->getUsername() == $this->get('session')->get($this->get('constants')->session->USERNAME))) {
+                    if ($request->isMethod('POST') || ($request->isMethod('PUT') && $vehicle->getOwner()->getUsername() == $user->getUsername())) {
                         $vehicle->setName($name)
-                            ->setLicensePlateNo($license_plate)
+                            ->setLicensePlateNo($license_plate_no)
                             ->setDescription($description)
                             ->setFuelOne($fuel_one)
                             ->setMake($make)
@@ -89,8 +89,36 @@ class ManageController extends Controller {
      * Deletes an existing vehicle
      *
      * @param Request $request
+     * @return Response
      */
     public function deleteAction(Request $request) {
+        $request_data = json_decode($request->getContent());
 
+        if ($user = $this->get('login_authenticator')->authenticateUser()) {
+            if (isset($request_data) && isset($request_data->vehicle) && isset($request_data->vehicle->license_plate_no)) {
+                $vehicle = $this->getDoctrine()->getRepository($this->get('constants')->database->VEHICLE_REPOSITORY)->find($request_data->vehicle->license_plate_no);
+
+                if (isset($vehicle)) {
+                    if ($vehicle->getOwner()->getUsername() == $user->getUsername()) {
+                        $em = $this->getDoctrine()->getManager();
+                        $em->remove($vehicle);
+                        $em->flush();
+                        $response_text = $this->get('constants')->response->STATUS_SUCCESS;
+                    } else {
+                        $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_OWNED;
+                    }
+                } else {
+                    $response_text = $this->get('constants')->response->STATUS_VEHICLE_DOES_NOT_EXIST;
+                }
+            } else {
+                $response_text = $this->get('constants')->response->STATUS_NO_ARGUMENTS_PROVIDED;
+            }
+        } else {
+            $response_text = $this->get('constants')->response->STATUS_USER_NOT_LOGGED_IN;
+        }
+
+        $response = new Response(json_encode(array($this->get('constants')->response->STATUS => $response_text)));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 }

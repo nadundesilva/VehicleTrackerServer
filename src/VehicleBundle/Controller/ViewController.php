@@ -19,7 +19,7 @@ class ViewController extends Controller {
                 ->getManager()
                 ->getRepository((new Retriever())->database->VEHICLE_REPOSITORY);
             $vehicle_query = $vehicle_repository->createQueryBuilder('vehicle')
-                ->select(array('vehicle.licensePlateNo', 'vehicle.name', 'vehicle.make', 'vehicle.model', 'vehicle.year'))
+                ->select(array('vehicle.licensePlateNo AS license_plate_no', 'vehicle.name', 'vehicle.make', 'vehicle.model', 'vehicle.year'))
                 ->where('vehicle.owner = :username')
                 ->setParameter('username', $user->getUsername())
                 ->orderBy('vehicle.name', 'ASC')

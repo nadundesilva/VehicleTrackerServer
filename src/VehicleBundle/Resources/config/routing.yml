@@ -22,3 +22,13 @@ vehicle_delete:
     path:     /delete
     defaults: { _controller: VehicleBundle:Manage:delete }
     methods:  ['DELETE']
+
+vehicle_driver_add:
+    path:     /driver/add
+    defaults: { _controller: VehicleBundle:Driver:add }
+    methods:  ['POST']
+
+vehicle_driver_remove:
+    path:     /driver/remove
+    defaults: { _controller: VehicleBundle:Driver:remove }
+    methods:  ['DELETE']

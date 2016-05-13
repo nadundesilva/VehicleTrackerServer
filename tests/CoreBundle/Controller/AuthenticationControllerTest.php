@@ -11,7 +11,7 @@ use Tests\BaseFunctionalTest;
  * For testing the core authentication controller
  * src\CoreBundle\Controller\AuthenticationController
  */
-class AuthenticationFunctionalTest extends BaseFunctionalTest {
+class AuthenticationControllerTest extends BaseFunctionalTest {
     /**
      * Functional Test
      *
@@ -132,7 +132,7 @@ class AuthenticationFunctionalTest extends BaseFunctionalTest {
              * The session does not exist
              * The user does not exist in the database
              */
-            'DetailsGiven' => array(null, 'testNewUser', 'testNewFirstName', 'testNewLastName', 'testNewPassword', 'testNewEmail@gmail.com', $constants->response->STATUS_SUCCESS, false)
+            'Success' => array(null, 'testNewUser', 'testNewFirstName', 'testNewLastName', 'testNewPassword', 'testNewEmail@gmail.com', $constants->response->STATUS_SUCCESS, false)
         );
     }
 
