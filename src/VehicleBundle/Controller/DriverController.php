@@ -86,11 +86,23 @@ class DriverController extends Controller {
                     if ($vehicle->getOwner()->getUsername() == $user->getUsername()) {
                         if (isset($driver)) {
                             if ($driver->getUsername() != $user->getUsername()) {
-                                $vehicle->removeDriver($driver);
-                                $em = $this->getDoctrine()->getManager();
-                                $em->persist($vehicle);
-                                $em->flush();
-                                $response_text = $this->get('constants')->response->STATUS_SUCCESS;
+                                $driver_list = $vehicle->getDriver();
+                                $driver_exist = false;
+                                for ($i = 0; $i < sizeof($driver_list); $i++) {
+                                    if ($driver_list[$i]->getUsername() == $driver->getUsername()) {
+                                        $driver_exist = true;
+                                    }
+                                }
+                                
+                                if ($driver_exist) {
+                                    $vehicle->removeDriver($driver);
+                                    $em = $this->getDoctrine()->getManager();
+                                    $em->persist($vehicle);
+                                    $em->flush();
+                                    $response_text = $this->get('constants')->response->STATUS_SUCCESS;
+                                } else {
+                                    $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_A_DRIVER;
+                                }
                             } else {
                                 $response_text = $this->get('constants')->response->STATUS_VEHICLE_OWNER_CANNOT_BE_A_DRIVER;
                             }

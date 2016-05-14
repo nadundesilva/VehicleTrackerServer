@@ -228,11 +228,18 @@ class DriverControllerTest extends BaseFunctionalTest {
             'DriverNotRegistered' => array(true, 'TEST-LPN00', 'testNonExistentUser', $constants->response->STATUS_USER_NOT_REGISTERED),
             /*
              * Should not add the driver into the vehicle table of the database
-             * For when the user to be added as a driver is already a driver of the vehicle
+             * For when the user to be removed as a driver is the owner
              *
              * The session should exist
              */
             'OwnerCannotBeADriver' => array(true, 'TEST-LPN00', 'testUser0', $constants->response->STATUS_VEHICLE_OWNER_CANNOT_BE_A_DRIVER),
+            /*
+             * Should not add the driver into the vehicle table of the database
+             * For when the user to be added as a driver is not a driver of the vehicle
+             *
+             * The session should exist
+             */
+            'UserToBeRemovedNotADriver' => array(true, 'TEST-LPN00', 'testUser3', $constants->response->STATUS_VEHICLE_NOT_A_DRIVER),
             /*
              * Should add the driver into the driver table of the database
              * For when the details are provided
