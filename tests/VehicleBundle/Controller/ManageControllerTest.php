@@ -73,7 +73,7 @@ class ManageControllerTest extends BaseFunctionalTest {
         }
 
         // Requesting
-        $this->client->request('POST', '/vehicle/create', array(), array(),
+        $this->client->request('POST', '/vehicle/', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -162,9 +162,6 @@ class ManageControllerTest extends BaseFunctionalTest {
 
         // Creating request body
         $vehicle = array();
-        if($original_license_plate_no != null) {
-            $vehicle['original_license_plate_no'] = $original_license_plate_no;
-        }
         if($vehicle_name != null) {
             $vehicle['name'] = $vehicle_name;
         }
@@ -199,7 +196,7 @@ class ManageControllerTest extends BaseFunctionalTest {
         }
 
         // Requesting
-        $this->client->request('PUT', '/vehicle/update', array(), array(),
+        $this->client->request('PUT', '/vehicle/' . $original_license_plate_no . '/', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -277,36 +274,27 @@ class ManageControllerTest extends BaseFunctionalTest {
     /**
      * Functional Test
      *
-     * For testing src\VehicleBundle\Controller\ManageController deleteAction deleting vehicle
+     * For testing src\VehicleBundle\Controller\ManageController removeAction removing vehicle
      *
-     * @dataProvider vehicleDeleteDataProvider
+     * @dataProvider vehicleRemoveDataProvider
      *
      * @param boolean $user_logged_in
      * @param string $license_plate_no
      * @param string $response_status
      */
-    public function testVehicleDelete($user_logged_in, $license_plate_no, $response_status) {
+    public function testVehicleRemove($user_logged_in, $license_plate_no, $response_status) {
         if($user_logged_in) {
             // Creating a mock session
             $this->session->set($this->constants->session->USERNAME, 'testUser0');
         }
 
-        // Creating request body
-        if($license_plate_no != null) {
-            $content = json_encode(array('vehicle' => array(
-                'license_plate_no' => $license_plate_no
-            )));
-        } else {
-            $content = null;
-        }
-
         // Requesting
-        $this->client->request('DELETE', '/vehicle/delete', array(), array(),
+        $this->client->request('DELETE', '/vehicle/' . $license_plate_no  . '/', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
             ),
-            $content
+            null
         );
         $response = $this->client->getResponse();
 
@@ -327,7 +315,7 @@ class ManageControllerTest extends BaseFunctionalTest {
      *
      * @return array
      */
-    public function vehicleDeleteDataProvider() {
+    public function vehicleRemoveDataProvider() {
         $constants = new Retriever();
 
         return array(
@@ -338,13 +326,6 @@ class ManageControllerTest extends BaseFunctionalTest {
              * The session does not exist
              */
             'UserNotLoggedIn' => array(false, 'TEST-LPN00', $constants->response->STATUS_USER_NOT_LOGGED_IN),
-            /*
-             * Should not delete the vehicle
-             * For when the license plate no of the vehicle to be deleted is not given
-             *
-             * The session should exist
-             */
-            'DetailsNotGiven' => array(true, null, $constants->response->STATUS_NO_ARGUMENTS_PROVIDED),
             /*
              * Should not delete the vehicle
              * For when the vehicle to be deleted does not exist

@@ -23,9 +23,10 @@ class ManageController extends Controller {
      * if an update request had been sent a the vehicle will be retrieved and updated
      *
      * @param Request $request
+     * @param string $original_license_plate_no
      * @return Response
      */
-    public function createUpdateAction(Request $request) {
+    public function createUpdateAction(Request $request, $original_license_plate_no = null) {
         $request_data = json_decode($request->getContent());
 
         if ($user = $this->get('login_authenticator')->authenticateUser()) {
@@ -45,7 +46,7 @@ class ManageController extends Controller {
                 if ($request->isMethod('POST')) {
                     $vehicle = new Vehicle();
                 } else {
-                    $vehicle = $this->getDoctrine()->getRepository($this->get('constants')->database->VEHICLE_REPOSITORY)->find($request_data->vehicle->original_license_plate_no);
+                    $vehicle = $this->getDoctrine()->getRepository($this->get('constants')->database->VEHICLE_REPOSITORY)->find($original_license_plate_no);
                 }
                 if (isset($vehicle)) {
                     if ($request->isMethod('POST') || ($request->isMethod('PUT') && $vehicle->getOwner()->getUsername() == $user->getUsername())) {
@@ -86,32 +87,26 @@ class ManageController extends Controller {
     }
 
     /**
-     * Deletes an existing vehicle
+     * Removes an existing vehicle
      *
-     * @param Request $request
+     * @param string $license_plate_no
      * @return Response
      */
-    public function deleteAction(Request $request) {
-        $request_data = json_decode($request->getContent());
-
+    public function removeAction($license_plate_no) {
         if ($user = $this->get('login_authenticator')->authenticateUser()) {
-            if (isset($request_data) && isset($request_data->vehicle) && isset($request_data->vehicle->license_plate_no)) {
-                $vehicle = $this->getDoctrine()->getRepository($this->get('constants')->database->VEHICLE_REPOSITORY)->find($request_data->vehicle->license_plate_no);
+                $vehicle = $this->getDoctrine()->getRepository($this->get('constants')->database->VEHICLE_REPOSITORY)->find($license_plate_no);
 
-                if (isset($vehicle)) {
-                    if ($vehicle->getOwner()->getUsername() == $user->getUsername()) {
-                        $em = $this->getDoctrine()->getManager();
-                        $em->remove($vehicle);
-                        $em->flush();
-                        $response_text = $this->get('constants')->response->STATUS_SUCCESS;
-                    } else {
-                        $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_OWNED;
-                    }
+            if (isset($vehicle)) {
+                if ($vehicle->getOwner()->getUsername() == $user->getUsername()) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->remove($vehicle);
+                    $em->flush();
+                    $response_text = $this->get('constants')->response->STATUS_SUCCESS;
                 } else {
-                    $response_text = $this->get('constants')->response->STATUS_VEHICLE_DOES_NOT_EXIST;
+                    $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_OWNED;
                 }
             } else {
-                $response_text = $this->get('constants')->response->STATUS_NO_ARGUMENTS_PROVIDED;
+                $response_text = $this->get('constants')->response->STATUS_VEHICLE_DOES_NOT_EXIST;
             }
         } else {
             $response_text = $this->get('constants')->response->STATUS_USER_NOT_LOGGED_IN;

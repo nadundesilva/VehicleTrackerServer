@@ -1,34 +1,34 @@
 vehicle_add:
-    path:     /create
+    path:     /
     defaults: { _controller: VehicleBundle:Manage:createUpdate }
     methods:  ['POST']
 
 vehicle_get_all:
-    path:     /get
+    path:     /
     defaults: { _controller: VehicleBundle:View:getAll }
     methods:  ['GET']
 
 vehicle_get:
-    path:     /get/{license_plate_no}
+    path:     /{license_plate_no}/
     defaults: { _controller: VehicleBundle:View:get }
     methods:  ['GET']
 
 vehicle_update:
-    path:     /update
+    path:     /{original_license_plate_no}/
     defaults: { _controller: VehicleBundle:Manage:createUpdate }
     methods:  ['PUT']
 
 vehicle_delete:
-    path:     /delete
-    defaults: { _controller: VehicleBundle:Manage:delete }
+    path:     /{license_plate_no}/
+    defaults: { _controller: VehicleBundle:Manage:remove }
     methods:  ['DELETE']
 
 vehicle_driver_add:
-    path:     /driver/add
+    path:     /{license_plate_no}/driver/{username}/
     defaults: { _controller: VehicleBundle:Driver:add }
     methods:  ['POST']
 
 vehicle_driver_remove:
-    path:     /driver/remove
+    path:     /{license_plate_no}/driver/{username}/
     defaults: { _controller: VehicleBundle:Driver:remove }
     methods:  ['DELETE']

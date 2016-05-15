@@ -21,33 +21,23 @@ class DriverControllerTest extends BaseFunctionalTest {
      *
      * @param boolean $user_logged_in
      * @param string $license_plate_no
-     * @param string $driver_name
+     * @param string $driver_username
      * @param string $response_status
      * @internal param string $vehicle_name
      */
-    public function testVehicleDriverAdd($user_logged_in, $license_plate_no, $driver_name, $response_status) {
+    public function testVehicleDriverAdd($user_logged_in, $license_plate_no, $driver_username, $response_status) {
         if($user_logged_in) {
             // Creating a mock session
             $this->session->set($this->constants->session->USERNAME, 'testUser0');
         }
 
-        // Creating request body
-        $content = array();
-        if($license_plate_no != null) {
-            $content['vehicle'] = array('license_plate_no' => $license_plate_no);
-        }
-        if($driver_name != null) {
-            $content['user'] = array('username' => $driver_name);
-        }
-        $content = json_encode($content);
-
         // Requesting
-        $this->client->request('POST', '/vehicle/driver/add', array(), array(),
+        $this->client->request('POST', '/vehicle/' . $license_plate_no . '/driver/' . $driver_username . '/' , array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
             ),
-            $content
+            null
         );
         $response = $this->client->getResponse();
 
@@ -79,13 +69,6 @@ class DriverControllerTest extends BaseFunctionalTest {
              * The session does not exist
              */
             'UserNotLoggedIn' => array(false, 'TEST-LPN00', 'testUser2', $constants->response->STATUS_USER_NOT_LOGGED_IN),
-            /*
-             * Should not add the driver into the driver table of the database
-             * For when the details of the vehicle and the user to be added is not given
-             *
-             * The session should exist
-             */
-            'DetailsNotGiven' => array(true, null, null, $constants->response->STATUS_NO_ARGUMENTS_PROVIDED),
             /*
              * Should not add the driver into the driver table of the database
              * For when the vehicle the driver is requested to be added to does not exist
@@ -140,33 +123,23 @@ class DriverControllerTest extends BaseFunctionalTest {
      *
      * @param boolean $user_logged_in
      * @param string $license_plate_no
-     * @param string $driver_name
+     * @param string $driver_username
      * @param string $response_status
      * @internal param string $vehicle_name
      */
-    public function testVehicleDriverRemove($user_logged_in, $license_plate_no, $driver_name, $response_status) {
+    public function testVehicleDriverRemove($user_logged_in, $license_plate_no, $driver_username, $response_status) {
         if($user_logged_in) {
             // Creating a mock session
             $this->session->set($this->constants->session->USERNAME, 'testUser0');
         }
 
-        // Creating request body
-        $content = array();
-        if($license_plate_no != null) {
-            $content['vehicle'] = array('license_plate_no' => $license_plate_no);
-        }
-        if($driver_name != null) {
-            $content['user'] = array('username' => $driver_name);
-        }
-        $content = json_encode($content);
-
         // Requesting
-        $this->client->request('DELETE', '/vehicle/driver/remove', array(), array(),
+        $this->client->request('DELETE', '/vehicle/' . $license_plate_no . '/driver/' . $driver_username . '/', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
             ),
-            $content
+            null
         );
         $response = $this->client->getResponse();
 
@@ -200,13 +173,6 @@ class DriverControllerTest extends BaseFunctionalTest {
             'UserNotLoggedIn' => array(false, 'TEST-LPN00', 'testUser2', $constants->response->STATUS_USER_NOT_LOGGED_IN),
             /*
              * Should not add the driver into the driver table of the database
-             * For when the details of the vehicle and the user to be added is not given
-             *
-             * The session should exist
-             */
-            'DetailsNotGiven' => array(true, null, null, $constants->response->STATUS_NO_ARGUMENTS_PROVIDED),
-            /*
-             * Should not add the driver into the driver table of the database
              * For when the vehicle the driver is requested to be added to does not exist
              *
              * The session should exist
@@ -228,7 +194,7 @@ class DriverControllerTest extends BaseFunctionalTest {
             'DriverNotRegistered' => array(true, 'TEST-LPN00', 'testNonExistentUser', $constants->response->STATUS_USER_NOT_REGISTERED),
             /*
              * Should not add the driver into the vehicle table of the database
-             * For when the user to be removed as a driver is the owner
+             * For when the user to be removed as a driver is 
              *
              * The session should exist
              */

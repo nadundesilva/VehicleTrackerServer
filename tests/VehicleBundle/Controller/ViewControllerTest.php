@@ -31,7 +31,7 @@ class ViewControllerTest extends BaseFunctionalTest {
         }
 
         // Requesting
-        $this->client->request('GET', '/vehicle/get', array(), array(),
+        $this->client->request('GET', '/vehicle/', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -100,7 +100,7 @@ class ViewControllerTest extends BaseFunctionalTest {
         }
 
         // Requesting
-        $this->client->request('GET', '/vehicle/get/' . $license_plate_no, array(), array(),
+        $this->client->request('GET', '/vehicle/' . $license_plate_no . '/', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
