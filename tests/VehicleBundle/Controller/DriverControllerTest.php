@@ -15,6 +15,91 @@ class DriverControllerTest extends BaseFunctionalTest {
     /**
      * Functional Test
      *
+     * For testing src\VehicleBundle\Controller\DriverController getAllAction get all drivers assigned for a specific vehicle
+     *
+     * @dataProvider vehicleDriverGetAllDataProvider
+     *
+     * @param boolean $user_logged_in
+     * @param string $license_plate
+     * @param int $response_status
+     * @param int $drivers_count
+     */
+    public function testVehicleDriverGetAll($user_logged_in, $license_plate, $response_status, $drivers_count) {
+        if($user_logged_in) {
+            // Creating a mock session
+            $this->session->set($this->constants->session->USERNAME, 'testUser0');
+        }
+
+        // Requesting
+        $this->client->request('GET', '/vehicle/' . ($license_plate == null ? '' : $license_plate . '/') . 'driver/' , array(), array(),
+            array(
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_X-Requested-With' => 'XMLHttpRequest',
+            ),
+            null
+        );
+        $response = $this->client->getResponse();
+
+        // Assertions
+        $this->assertSuccessfulResponse($response);
+        $results = json_decode($response->getContent());
+        $this->assertEquals($response_status, $results->status);
+        if($drivers_count != null) {
+            $this->assertEquals($drivers_count, sizeof($results->drivers));
+        }
+        if($user_logged_in) {
+            $this->assertEquals('testUser0', $this->session->get($this->constants->session->USERNAME));
+        } else {
+            $this->assertNull($this->session->get($this->constants->session->USERNAME));
+        }
+
+    }
+
+    /**
+     * Data Provider
+     *
+     * For providing data for testing src\VehicleBundle\Controller\DriverController getAllAction getting all drivers for a specific vehicle
+     *
+     * @return array
+     */
+    public function vehicleDriverGetAllDataProvider() {
+        $constants = new Retriever();
+
+        return array(
+            /*
+             * Should not retrieve the drivers for the vehicle specified
+             * For when the user trying to create the vehicle is not logged in
+             *
+             * The session does not exist
+             */
+            'UserNotLoggedIn' => array(false, 'TEST-LPN00', $constants->response->STATUS_USER_NOT_LOGGED_IN, null),
+            /*
+             * Should not retrieve the drivers for the vehicle specified
+             * For when the user trying to retrieve the driver list does not own the vehicle
+             *
+             * The session does not exist
+             */
+            'VehicleNotOwned' => array(true, 'TEST-LPN10', $constants->response->STATUS_VEHICLE_NOT_OWNED, null),
+            /*
+             * Should not retrieve the drivers for the vehicle specified
+             * For when the vehicle the user is trying to retrieve the drivers for does not exist
+             *
+             * The session does not exist
+             */
+            'VehicleDoesNotExist' => array(true, 'TEST-NLPN', $constants->response->STATUS_VEHICLE_DOES_NOT_EXIST, null),
+            /*
+             * Should retrieve the drivers for the vehicle specified
+             * For when the vehicle details are provided
+             *
+             * The session should exist
+             */
+            'Success' => array(true, 'TEST-LPN00', $constants->response->STATUS_SUCCESS, 1),
+        );
+    }
+
+    /**
+     * Functional Test
+     *
      * For testing src\VehicleBundle\Controller\DriverController addAction adding driver
      *
      * @dataProvider vehicleDriverAddDataProvider

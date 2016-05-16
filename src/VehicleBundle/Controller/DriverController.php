@@ -2,12 +2,48 @@
 
 namespace VehicleBundle\Controller;
 
+use CoreBundle\Util\Constants\Retriever;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use JMS\Serializer\SerializationContext;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DriverController extends Controller {
+    /**
+     * Returns all existing drivers of the vehicle specified
+     *
+     * @param string $license_plate_no
+     * @return Response
+     */
+    public function getAllAction($license_plate_no) {
+        if ($user = $this->get('login_authenticator')->authenticateUser()) {
+            $vehicle = $this->getDoctrine()
+                ->getManager()
+                ->getRepository((new Retriever())->database->VEHICLE_REPOSITORY)
+                ->find($license_plate_no);
+            if (isset($vehicle)) {
+                if ($vehicle->getOwner()->getUsername() == $user->getUsername()) {
+                    $drivers_list = $vehicle->getDriver();
+                    $response_text = $this->get('constants')->response->STATUS_SUCCESS;
+                } else {
+                    $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_OWNED;
+                }
+            } else {
+                $response_text = $this->get('constants')->response->STATUS_VEHICLE_DOES_NOT_EXIST;
+            }
+        } else {
+            $response_text = $this->get('constants')->response->STATUS_USER_NOT_LOGGED_IN;
+        }
+
+        $response_body = array($this->get('constants')->response->STATUS => $response_text);
+        if(isset($drivers_list)) {
+            $response_body[$this->get('constants')->response->DRIVERS] = $drivers_list;
+        }
+        $response = new Response($this->get('jms_serializer')->serialize($response_body, 'json', SerializationContext::create()));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
     /**
      * Adds an existing user as a driver to an existing vehicle
      *

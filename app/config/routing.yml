@@ -1,18 +1,18 @@
-check_in:
-    resource: "@CheckInBundle/Resources/config/routing.yml"
-    prefix:   /check-in
-
 core:
     resource: "@CoreBundle/Resources/config/routing.yml"
     prefix:   /
 
+check_in:
+    resource: "@CheckInBundle/Resources/config/routing.yml"
+    prefix:   /vehicle/{license_plate_no}/check-in
+
 fuel_fill_up:
     resource: "@FuelFillUpBundle/Resources/config/routing.yml"
-    prefix:   /fuel-fill-up
+    prefix:   /vehicle/{license_plate_no}/fuel-fill-up
 
 misc_cost:
     resource: "@MiscCostBundle/Resources/config/routing.yml"
-    prefix:   /misc-cost
+    prefix:   /vehicle/{license_plate_no}/misc-cost
 
 vehicle:
     resource: "@VehicleBundle/Resources/config/routing.yml"

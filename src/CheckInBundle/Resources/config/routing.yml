@@ -1,3 +1,9 @@
-check_in_homepage:
+check_in_add:
     path:     /
-    defaults: { _controller: CheckInBundle:Default:index }
+    defaults: { _controller: CheckInBundle:Manage:createUpdate }
+    methods:  ['POST']
+
+check_in_update:
+    path:     /{check_in_id}
+    defaults: { _controller: CheckInBundle:Manage:createUpdate }
+    methods:  ['PUT']

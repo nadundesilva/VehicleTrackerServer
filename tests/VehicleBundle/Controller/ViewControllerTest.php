@@ -44,9 +44,13 @@ class ViewControllerTest extends BaseFunctionalTest {
         $this->assertSuccessfulResponse($response);
         $results = json_decode($response->getContent());
         $this->assertEquals($response_status, $results->status);
-        if($user_logged_in) {
+        if($owned_vehicles_count != null) {
             $this->assertEquals($owned_vehicles_count, sizeof($results->owned_vehicles));
+        }
+        if($managed_vehicles_count != null) {
             $this->assertEquals($managed_vehicles_count, sizeof($results->managed_vehicles));
+        }
+        if($user_logged_in) {
             $this->assertEquals('testUser0', $this->session->get($this->constants->session->USERNAME));
         } else {
             $this->assertNull($this->session->get($this->constants->session->USERNAME));
@@ -71,7 +75,7 @@ class ViewControllerTest extends BaseFunctionalTest {
              *
              * The session does not exist
              */
-            'UserNotLoggedIn' => array(false, $constants->response->STATUS_USER_NOT_LOGGED_IN, 0, 0),
+            'UserNotLoggedIn' => array(false, $constants->response->STATUS_USER_NOT_LOGGED_IN, null, null),
             /*
              * Should return all the vehicles owned and managed by the user
              * For when the vehicle details are provided
@@ -93,7 +97,7 @@ class ViewControllerTest extends BaseFunctionalTest {
      * @param string $license_plate_no
      * @param string $response_status
      */
-    public function testVehicleGet($user_logged_in, $license_plate_no, $response_status) {
+    public function testVehicleGet($user_logged_in, $license_plate_no, $response_status, $vehicle_returned) {
         if($user_logged_in) {
             // Creating a mock session
             $this->session->set($this->constants->session->USERNAME, 'testUser0');
@@ -112,6 +116,9 @@ class ViewControllerTest extends BaseFunctionalTest {
         // Assertions
         $this->assertSuccessfulResponse($response);
         $this->assertEquals($response_status, json_decode($response->getContent())->status);
+        if($vehicle_returned) {
+            $this->assertTrue(isset(json_decode($response->getContent())->vehicle));
+        }
         if($user_logged_in) {
             $this->assertEquals('testUser0', $this->session->get($this->constants->session->USERNAME));
         } else {
@@ -136,21 +143,21 @@ class ViewControllerTest extends BaseFunctionalTest {
              *
              * The session does not exist
              */
-            'UserNotLoggedIn' => array(false, 'TEST-LPN00', $constants->response->STATUS_USER_NOT_LOGGED_IN),
+            'UserNotLoggedIn' => array(false, 'TEST-LPN00', $constants->response->STATUS_USER_NOT_LOGGED_IN, false),
             /*
              * Should not update the details of the vehicle
              * For when the user trying to create the vehicle is not logged in
              *
              * The session does not exist
              */
-            'UnownedAndUnManagedVehicle' => array(true, 'TEST-LPN20', $constants->response->STATUS_VEHICLE_NOT_A_DRIVER_OR_OWNER),
+            'UnownedAndUnManagedVehicle' => array(true, 'TEST-LPN20', $constants->response->STATUS_VEHICLE_NOT_A_DRIVER_OR_OWNER, false),
             /*
              * Should update the details of the vehicle
              * For when the vehicle details are provided
              *
              * The session should exist
              */
-            'Success' => array(true, 'TEST-LPN00', $constants->response->STATUS_SUCCESS),
+            'Success' => array(true, 'TEST-LPN00', $constants->response->STATUS_SUCCESS, true),
         );
     }
 }

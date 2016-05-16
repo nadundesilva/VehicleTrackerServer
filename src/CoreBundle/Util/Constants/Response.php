@@ -10,6 +10,7 @@ class Response {
     public $VEHICLE = "vehicle";
     public $OWNED_VEHICLES = "owned_vehicles";
     public $MANAGED_VEHICLES = "managed_vehicles";
+    public $DRIVERS = "drivers";
 
     /*
      * General
@@ -39,4 +40,10 @@ class Response {
     public $STATUS_VEHICLE_DUPLICATE_DRIVER = "VEHICLE_DUPLICATE_DRIVER";
     public $STATUS_VEHICLE_NOT_A_DRIVER = "VEHICLE_NOT_A_DRIVER";
     public $STATUS_VEHICLE_NOT_A_DRIVER_OR_OWNER = "VEHICLE_NOT_A_DRIVER_OR_OWNER";
+
+    /*
+     * Check in related
+     */
+    public $STATUS_CHECK_IN_DOES_NOT_EXIST = "CHECK_IN_DOES_NOT_EXIST";
+    public $STATUS_CHECK_IN_NOT_CREATOR_OR_OWNER_OF_VEHICLE = "CHECK_IN_NOT_CREATOR_OR_OWNER_OF_VEHICLE";
 }
