@@ -8,8 +8,8 @@ use Tests\BaseFunctionalTest;
 /*
  * Functional Tests
  *
- * For testing the vehicle manage controller
- * src\VehicleBundle\Controller\ManageController
+ * For testing the vehicle  driver controller
+ * src\VehicleBundle\Controller\DriverController
  */
 class DriverControllerTest extends BaseFunctionalTest {
     /**
@@ -20,18 +20,18 @@ class DriverControllerTest extends BaseFunctionalTest {
      * @dataProvider vehicleDriverGetAllDataProvider
      *
      * @param boolean $user_logged_in
-     * @param string $license_plate
+     * @param string $license_plate_no
      * @param int $response_status
      * @param int $drivers_count
      */
-    public function testVehicleDriverGetAll($user_logged_in, $license_plate, $response_status, $drivers_count) {
+    public function testVehicleDriverGetAll($user_logged_in, $license_plate_no, $response_status, $drivers_count) {
         if($user_logged_in) {
             // Creating a mock session
             $this->session->set($this->constants->session->USERNAME, 'testUser0');
         }
 
         // Requesting
-        $this->client->request('GET', '/vehicle/' . ($license_plate == null ? '' : $license_plate . '/') . 'driver/' , array(), array(),
+        $this->client->request('GET', '/vehicle/' . $license_plate_no . '/driver/' , array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -181,7 +181,7 @@ class DriverControllerTest extends BaseFunctionalTest {
              *
              * The session should exist
              */
-            'OwnerCannotBeADriver' => array(true, 'TEST-LPN00', 'testUser0', $constants->response->STATUS_VEHICLE_OWNER_CANNOT_BE_A_DRIVER),
+            'OwnerCannotBeADriver' => array(true, 'TEST-LPN00', 'testUser0', $constants->response->STATUS_VEHICLE_OWNER_CANNOT_BE_DRIVER),
             /*
              * Should not add the driver into the vehicle table of the database
              * For when the user to be added as a driver is already a driver of the vehicle
@@ -283,14 +283,14 @@ class DriverControllerTest extends BaseFunctionalTest {
              *
              * The session should exist
              */
-            'OwnerCannotBeADriver' => array(true, 'TEST-LPN00', 'testUser0', $constants->response->STATUS_VEHICLE_OWNER_CANNOT_BE_A_DRIVER),
+            'OwnerCannotBeADriver' => array(true, 'TEST-LPN00', 'testUser0', $constants->response->STATUS_VEHICLE_OWNER_CANNOT_BE_DRIVER),
             /*
              * Should not add the driver into the vehicle table of the database
              * For when the user to be added as a driver is not a driver of the vehicle
              *
              * The session should exist
              */
-            'UserToBeRemovedNotADriver' => array(true, 'TEST-LPN00', 'testUser3', $constants->response->STATUS_VEHICLE_NOT_A_DRIVER),
+            'UserToBeRemovedNotADriver' => array(true, 'TEST-LPN00', 'testUser3', $constants->response->STATUS_VEHICLE_NOT_DRIVER),
             /*
              * Should add the driver into the driver table of the database
              * For when the details are provided

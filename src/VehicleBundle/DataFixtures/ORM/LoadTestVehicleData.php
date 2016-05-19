@@ -39,7 +39,7 @@ class LoadTestVehicleData extends AbstractFixture implements OrderedFixtureInter
                     ->setFuelTwo('testFuelTwo' . $i . $j)
                     ->setMake('testMake' . $i . $j)
                     ->setModel('testModel' . $i . $j)
-                    ->setYear(1900 + $i * 10 + $j)
+                    ->setYear(1950 + $i * 10 + $j)
                     ->setOwner($this->getReference('test-user-' . $i));
                 $manager->persist($testVehicle);
                 $manager->flush();

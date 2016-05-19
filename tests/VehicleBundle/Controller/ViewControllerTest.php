@@ -8,8 +8,8 @@ use Tests\BaseFunctionalTest;
 /*
  * Functional Tests
  *
- * For testing the vehicle manage controller
- * src\VehicleBundle\Controller\ManageController
+ * For testing the vehicle view controller
+ * src\VehicleBundle\Controller\ViewController
  */
 class ViewControllerTest extends BaseFunctionalTest {
     /**
@@ -150,7 +150,7 @@ class ViewControllerTest extends BaseFunctionalTest {
              *
              * The session does not exist
              */
-            'UnownedAndUnManagedVehicle' => array(true, 'TEST-LPN20', $constants->response->STATUS_VEHICLE_NOT_A_DRIVER_OR_OWNER, false),
+            'UnownedAndUnManagedVehicle' => array(true, 'TEST-LPN20', $constants->response->STATUS_VEHICLE_NOT_DRIVER_OR_OWNER, false),
             /*
              * Should update the details of the vehicle
              * For when the vehicle details are provided

@@ -18,7 +18,7 @@ vehicle_update:
     defaults: { _controller: VehicleBundle:Manage:update }
     methods:  ['PUT']
 
-vehicle_delete:
+vehicle_remove:
     path:     /{license_plate_no}/
     defaults: { _controller: VehicleBundle:Manage:remove }
     methods:  ['DELETE']

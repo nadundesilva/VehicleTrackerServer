@@ -75,7 +75,7 @@ class DriverController extends Controller {
                                 $response_text = $this->get('constants')->response->STATUS_VEHICLE_DUPLICATE_DRIVER;
                             }
                         } else {
-                            $response_text = $this->get('constants')->response->STATUS_VEHICLE_OWNER_CANNOT_BE_A_DRIVER;
+                            $response_text = $this->get('constants')->response->STATUS_VEHICLE_OWNER_CANNOT_BE_DRIVER;
                         }
                     } else {
                         $response_text = $this->get('constants')->response->STATUS_USER_NOT_REGISTERED;
@@ -130,10 +130,10 @@ class DriverController extends Controller {
                                 $em->flush();
                                 $response_text = $this->get('constants')->response->STATUS_SUCCESS;
                             } else {
-                                $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_A_DRIVER;
+                                $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_DRIVER;
                             }
                         } else {
-                            $response_text = $this->get('constants')->response->STATUS_VEHICLE_OWNER_CANNOT_BE_A_DRIVER;
+                            $response_text = $this->get('constants')->response->STATUS_VEHICLE_OWNER_CANNOT_BE_DRIVER;
                         }
                     } else {
                         $response_text = $this->get('constants')->response->STATUS_USER_NOT_REGISTERED;

@@ -15,7 +15,7 @@ class ManageControllerTest extends BaseFunctionalTest {
     /**
      * Functional Test
      *
-     * For testing src\VehicleBundle\Controller\ManageController createUpdateAction creating vehicle
+     * For testing src\VehicleBundle\Controller\ManageController createAction creating vehicle
      *
      * @dataProvider vehicleCreateDataProvider
      *
@@ -95,7 +95,7 @@ class ManageControllerTest extends BaseFunctionalTest {
     /**
      * Data Provider
      *
-     * For providing data for testing src\VehicleBundle\Controller\ManageController createUpdateAction creating vehicle
+     * For providing data for testing src\VehicleBundle\Controller\ManageController createAction creating vehicle
      *
      * @return array
      */
@@ -137,7 +137,7 @@ class ManageControllerTest extends BaseFunctionalTest {
     /**
      * Functional Test
      *
-     * For testing src\VehicleBundle\Controller\ManageController createUpdateAction updating vehicle
+     * For testing src\VehicleBundle\Controller\ManageController updateAction updating vehicle
      *
      * @dataProvider vehicleUpdateDataProvider
      *
@@ -218,7 +218,7 @@ class ManageControllerTest extends BaseFunctionalTest {
     /**
      * Data Provider
      *
-     * For providing data for testing src\VehicleBundle\Controller\ManageController createUpdateAction updating vehicle
+     * For providing data for testing src\VehicleBundle\Controller\ManageController updateAction updating vehicle
      *
      * @return array
      */
@@ -228,28 +228,28 @@ class ManageControllerTest extends BaseFunctionalTest {
         return array(
             /*
              * Should not update the details of the vehicle
-             * For when the user trying to create the vehicle is not logged in
+             * For when the user trying to update the vehicle is not logged in
              *
              * The session does not exist
              */
             'UserNotLoggedIn' => array('TEST-LPN00', false, 'testNewVehicle', 'TEST-NLPN', 'testNewDescription', true, 'testNewFuelOne', 'testNewFuelTwo', 'testNewMake', 'testNewModel', '2010', $constants->response->STATUS_USER_NOT_LOGGED_IN),
             /*
              * Should not update the details of the vehicle
-             * For when the details of the vehicle to be created are not given
+             * For when the details of the vehicle to be updated are not given
              *
              * The session should exist
              */
             'DetailsNotGiven' => array('TEST-LPN00', true, null, null, null, null, null, null, null, null, null, $constants->response->STATUS_NO_ARGUMENTS_PROVIDED),
             /*
              * Should not update the details of the vehicle
-             * For when the vehicle requested to update does not exist
+             * For when the vehicle requested to be updated does not exist
              *
              * The session should exist
              */
             'NonExistentVehicle' => array('TEST-NELPN', true, 'testNonExistentVehicle', 'TEST-NLPN', 'testNewDescription', true, 'testNewFuelOne', 'testNewFuelTwo', 'testNewMake', 'testNewModel', '2010', $constants->response->STATUS_VEHICLE_DOES_NOT_EXIST),
             /*
              * Should not update the details of the vehicle
-             * For when the vehicle requested to update is not owned by the user
+             * For when the vehicle requested to be updates is not owned by the user
              *
              * The session should exist
              */

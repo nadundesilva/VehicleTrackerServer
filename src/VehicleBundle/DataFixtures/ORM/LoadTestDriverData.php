@@ -34,15 +34,13 @@ class LoadTestDriverData extends AbstractFixture implements OrderedFixtureInterf
             $vehicle->addDriver($user);
             $manager->persist($vehicle);
             $manager->flush();
-            $i++;
-        }
-        $i = 0;
-        while ($i < 10) {
+
             $vehicle = $this->getReference('test-vehicle-0' . $i);
             $user = $this->getReference('test-user-1');
             $vehicle->addDriver($user);
             $manager->persist($vehicle);
             $manager->flush();
+            
             $i++;
         }
     }

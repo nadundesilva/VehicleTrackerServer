@@ -84,7 +84,7 @@ class ViewController extends Controller {
             if ($vehicle != null) {
                 $response_text = $this->get('constants')->response->STATUS_SUCCESS;
             } else {
-                $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_A_DRIVER_OR_OWNER;
+                $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_DRIVER_OR_OWNER;
             }
         } else {
             $response_text = $this->get('constants')->response->STATUS_USER_NOT_LOGGED_IN;
