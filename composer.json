@@ -1,5 +1,5 @@
 {
-    "name": "vehicle_tracker",
+    "name": "VehicleManager",
     "license": "proprietary",
     "type": "project",
     "description": "This is a fuel and other cost tracking application designed to support multiple drivers",

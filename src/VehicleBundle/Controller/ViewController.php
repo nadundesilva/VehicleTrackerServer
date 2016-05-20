@@ -53,14 +53,16 @@ class ViewController extends Controller {
             $managed_vehicles = $user->getVehicle();
 
             $vehicle = null;
-            for ($i = 0; $i < sizeof($owned_vehicles); $i++) {
+            $owned_vehicles_list_size = sizeof($owned_vehicles);
+            for ($i = 0; $i < $owned_vehicles_list_size; $i++) {
                 if ($owned_vehicles[$i]->getLicensePlateNo() == $license_plate_no) {
                     $vehicle = $owned_vehicles[$i];
                     break;
                 }
             }
             if (isset($vehicle)) {
-                for ($i = 0; $i < sizeof($managed_vehicles); $i++) {
+                $managed_vehicles_list_size = sizeof($managed_vehicles);
+                for ($i = 0; $i < $managed_vehicles_list_size; $i++) {
                     if ($managed_vehicles[$i]->getLicensePlateNo() == $license_plate_no) {
                         $vehicle = $managed_vehicles[$i];
                         break;
