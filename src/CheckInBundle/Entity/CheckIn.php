@@ -2,6 +2,9 @@
 
 namespace CheckInBundle\Entity;
 
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
 use CoreBundle\Entity\User;
 use VehicleBundle\Entity\Vehicle;
 
@@ -11,26 +14,33 @@ use VehicleBundle\Entity\Vehicle;
 class CheckIn
 {
     /**
+     * @Groups({"list", "view"})
      * @var string
      */
     private $description;
 
     /**
+     * @SerializedName("longitude")
+     * @Groups({"view"})
      * @var string
      */
     private $lat;
 
     /**
+     * @SerializedName("latitude")
+     * @Groups({"view"})
      * @var string
      */
     private $long;
 
     /**
+     * @Groups({"list", "view"})
      * @var \DateTime
      */
     private $timestamp = 'CURRENT_TIMESTAMP';
 
     /**
+     * @Groups({"list", "view"})
      * @var integer
      */
     private $id;
@@ -198,6 +208,16 @@ class CheckIn
     public function getCreator()
     {
         return $this->creator;
+    }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("creator")
+     * @Groups({"list", "view"})
+     */
+    public function getCreatorID()
+    {
+        return $this->creator->getUsername();
     }
 }
 

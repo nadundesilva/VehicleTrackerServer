@@ -5,6 +5,12 @@ parameters:
     database_user:     vtrack_test
     database_password: F1bonacc1
 
+    test_database_host:     null
+    test_database_port:     null
+    test_database_name:     test_db_sqlite
+    test_database_user:     null
+    test_database_password: null
+
     mailer_transport:  smtp
     mailer_host:       vtrack@vehicle-tracker.site88.net
     mailer_user:       a2316633

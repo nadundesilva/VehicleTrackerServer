@@ -59,6 +59,7 @@ class Vehicle
     private $year;
 
     /**
+     * @SerializedName("license_plate_no")
      * @Groups({"list", "view"})
      * @var string
      */

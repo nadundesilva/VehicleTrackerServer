@@ -18,10 +18,10 @@ swiftmailer:
 doctrine:
     dbal:
         driver:   pdo_sqlite
-        host:     ""
-        port:     ""
-        dbname:   test_db_sqlite
+        host:     "%test_database_host%"
+        port:     "%test_database_port%"
+        dbname:   "%test_database_name%"
         path:     web/test_db_sqlite
-        user:     ""
-        password: ""
+        user:     "%test_database_user%"
+        password: "%test_database_password%"
         charset:  UTF8

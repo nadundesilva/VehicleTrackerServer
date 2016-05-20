@@ -11,6 +11,7 @@ class Response {
     public $OWNED_VEHICLES = "owned_vehicles";
     public $MANAGED_VEHICLES = "managed_vehicles";
     public $DRIVERS = "drivers";
+    public $CHECK_INS = "check_ins";
 
     /*
      * General
