@@ -54,14 +54,16 @@ class ViewController extends Controller {
             $managed_vehicles = $user->getVehicle();
 
             $vehicle = null;
-            for ($i = 0; $i < sizeof($owned_vehicles); $i++) {
+            $owned_vehicles_list_size = sizeof($owned_vehicles);
+            for ($i = 0; $i < $owned_vehicles_list_size; $i++) {
                 if ($owned_vehicles[$i]['license_plate_no'] == $license_plate_no) {
                     $vehicle = $owned_vehicles[$i];
                     break;
                 }
             }
-            if ($vehicle == null) {
-                for ($i = 0; $i < sizeof($managed_vehicles); $i++) {
+            if ($vehicle === null) {
+                $managed_vehicles_list_size = sizeof($managed_vehicles);
+                for ($i = 0; $i < $managed_vehicles_list_size; $i++) {
                     if ($managed_vehicles[$i]->getLicensePlateNo() == $license_plate_no) {
                         $vehicle = $managed_vehicles[$i];
                         break;
@@ -69,7 +71,7 @@ class ViewController extends Controller {
                 }
             }
 
-            if ($vehicle != null) {
+            if ($vehicle !== null) {
                 $response_text = $this->get('constants')->response->STATUS_SUCCESS;
             } else {
                 $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_DRIVER_OR_OWNER;

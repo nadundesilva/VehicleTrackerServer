@@ -1,7 +1,8 @@
 {
-    "name": "nadun de silva/vehicle_tracker",
+    "name": "vehicle_tracker",
     "license": "proprietary",
     "type": "project",
+    "description": "This is a fuel and other cost tracking application designed to support multiple drivers",
     "autoload": {
         "psr-4": {
             "": "src/"

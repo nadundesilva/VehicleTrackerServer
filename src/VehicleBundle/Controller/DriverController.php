@@ -117,7 +117,8 @@ class DriverController extends Controller {
                         if ($driver->getUsername() != $user->getUsername()) {
                             $driver_list = $vehicle->getDriver();
                             $driver_exist = false;
-                            for ($i = 0; $i < sizeof($driver_list); $i++) {
+                            $driver_list_size = sizeof($driver_list);
+                            for ($i = 0; $i < $driver_list_size; $i++) {
                                 if ($driver_list[$i]->getUsername() == $driver->getUsername()) {
                                     $driver_exist = true;
                                 }

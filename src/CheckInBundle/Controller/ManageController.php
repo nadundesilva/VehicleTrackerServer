@@ -22,7 +22,8 @@ class ManageController extends Controller {
                 $vehicle = $this->getDoctrine()->getRepository($this->get('constants')->database->VEHICLE_REPOSITORY)->find($license_plate_no);
                 if (isset($vehicle)) {
                     $driver_list = $vehicle->getDriver();
-                    for ($i = 0; $i < sizeof($driver_list); $i++) {
+                    $driver_list_size = sizeof($driver_list);
+                    for ($i = 0; $i < $driver_list_size; $i++) {
                         if ($driver_list[$i]->getUsername() == $user->getUsername()) {
                             $is_a_driver = true;
                             break;
@@ -74,7 +75,8 @@ class ManageController extends Controller {
                 $vehicle = $this->getDoctrine()->getRepository($this->get('constants')->database->VEHICLE_REPOSITORY)->find($license_plate_no);
                 if (isset($vehicle)) {
                     $driver_list = $vehicle->getDriver();
-                    for ($i = 0; $i < sizeof($driver_list); $i++) {
+                    $driver_list_size = sizeof($driver_list);
+                    for ($i = 0; $i < $driver_list_size; $i++) {
                         if ($driver_list[$i]->getUsername() == $user->getUsername()) {
                             $is_a_driver = true;
                             break;
@@ -127,7 +129,8 @@ class ManageController extends Controller {
             if (isset($check_in)) {
                 $vehicle = $check_in->getVehicle();
                 $driver_list = $vehicle->getDriver();
-                for ($i = 0; $i < sizeof($driver_list); $i++) {
+                $driver_list_size = sizeof($driver_list);
+                for ($i = 0; $i < $driver_list_size; $i++) {
                     if ($driver_list[$i]->getUsername() == $user->getUsername()) {
                         $is_a_driver = true;
                         break;
@@ -156,7 +159,6 @@ class ManageController extends Controller {
             $response_text = $this->get('constants')->response->STATUS_USER_NOT_LOGGED_IN;
         }
 
-//        $response = new Response($this->get('jms_serializer')->serialize(array($this->get('constants')->response->STATUS => $vehicle->getLicensePlateNo()), 'json'));
         $response = new Response(json_encode(array($this->get('constants')->response->STATUS => $response_text)));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
