@@ -1,6 +1,6 @@
 <?php
 
-namespace CheckInBundle\Controller;
+namespace FuelFillUpBundle\Controller;
 
 use CoreBundle\Util\Constants\Retriever;
 use JMS\Serializer\SerializationContext;

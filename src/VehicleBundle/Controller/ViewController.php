@@ -46,21 +46,16 @@ class ViewController extends Controller {
      */
     public function getAction($license_plate_no) {
         if ($user = $this->get('login_authenticator')->authenticateUser()) {
-            $owned_vehicles = $this->getDoctrine()->getManager()->getRepository((new Retriever())->database->VEHICLE_REPOSITORY)->findBy(
-                    array('owner' => $user->getUsername(), 'licensePlateNo' => $license_plate_no),
-                    array('name' => 'ASC')
-                );
-            $managed_vehicles = $user->getVehicle();
+            $owned_vehicle = $this->getDoctrine()->getManager()->getRepository((new Retriever())->database->VEHICLE_REPOSITORY)->findOneBy(
+                array('owner' => $user->getUsername(), 'licensePlateNo' => $license_plate_no),
+                array('name' => 'ASC')
+            );
 
             $vehicle = null;
-            $owned_vehicles_list_size = sizeof($owned_vehicles);
-            for ($i = 0; $i < $owned_vehicles_list_size; $i++) {
-                if ($owned_vehicles[$i]->getLicensePlateNo() == $license_plate_no) {
-                    $vehicle = $owned_vehicles[$i];
-                    break;
-                }
-            }
-            if (isset($vehicle)) {
+            if ($owned_vehicle != null) {
+                $vehicle = $owned_vehicle;
+            } else {
+                $managed_vehicles = $user->getVehicle();
                 $managed_vehicles_list_size = sizeof($managed_vehicles);
                 for ($i = 0; $i < $managed_vehicles_list_size; $i++) {
                     if ($managed_vehicles[$i]->getLicensePlateNo() == $license_plate_no) {
@@ -70,7 +65,7 @@ class ViewController extends Controller {
                 }
             }
 
-            if (isset($vehicle)) {
+            if ($vehicle != null) {
                 $response_text = $this->get('constants')->response->STATUS_SUCCESS;
             } else {
                 $response_text = $this->get('constants')->response->STATUS_VEHICLE_NOT_DRIVER_OR_OWNER;

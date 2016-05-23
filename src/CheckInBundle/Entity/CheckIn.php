@@ -219,5 +219,15 @@ class CheckIn
     {
         return $this->creator->getUsername();
     }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("vehicle")
+     * @Groups({"view"})
+     */
+    public function getVehicleLicensePlateNo()
+    {
+        return $this->vehicle->getLicensePlateNo();
+    }
 }
 
