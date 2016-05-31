@@ -1,6 +1,9 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace VehicleBundle\Entity;
+use CoreBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Vehicle
@@ -38,7 +41,7 @@ class Vehicle
     private $model;
 
     /**
-     * @var \DateTime
+     * @var integer
      */
     private $year;
 
@@ -48,21 +51,21 @@ class Vehicle
     private $licensePlateNo;
 
     /**
-     * @var \CoreBundle\Entity\User
+     * @var User
      */
     private $owner;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
-    private $user;
+    private $driver;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->driver = new ArrayCollection();
     }
 
     /**
@@ -212,7 +215,7 @@ class Vehicle
     /**
      * Set year
      *
-     * @param \DateTime $year
+     * @param integer $year
      *
      * @return Vehicle
      */
@@ -226,11 +229,25 @@ class Vehicle
     /**
      * Get year
      *
-     * @return \DateTime
+     * @return integer
      */
     public function getYear()
     {
         return $this->year;
+    }
+
+    /**
+     * Set licensePlateNo
+     *
+     * @param string $licensePlateNo
+     *
+     * @return Vehicle
+     */
+    public function setLicensePlateNo($licensePlateNo)
+    {
+        $this->licensePlateNo = $licensePlateNo;
+
+        return $this;
     }
 
     /**
@@ -246,11 +263,11 @@ class Vehicle
     /**
      * Set owner
      *
-     * @param \CoreBundle\Entity\User $owner
+     * @param User $owner
      *
      * @return Vehicle
      */
-    public function setOwner(\CoreBundle\Entity\User $owner = null)
+    public function setOwner(User $owner = null)
     {
         $this->owner = $owner;
 
@@ -260,7 +277,7 @@ class Vehicle
     /**
      * Get owner
      *
-     * @return \CoreBundle\Entity\User
+     * @return User
      */
     public function getOwner()
     {
@@ -268,37 +285,37 @@ class Vehicle
     }
 
     /**
-     * Add user
+     * Add driver
      *
-     * @param \CoreBundle\Entity\User $user
+     * @param User $driver
      *
      * @return Vehicle
      */
-    public function addUser(\CoreBundle\Entity\User $user)
+    public function addDriver(User $driver)
     {
-        $this->user[] = $user;
+        $this->driver[] = $driver;
 
         return $this;
     }
 
     /**
-     * Remove user
+     * Remove driver
      *
-     * @param \CoreBundle\Entity\User $user
+     * @param User $driver
      */
-    public function removeUser(\CoreBundle\Entity\User $user)
+    public function removeDriver(User $driver)
     {
-        $this->user->removeElement($user);
+        $this->driver->removeElement($driver);
     }
 
     /**
-     * Get user
+     * Get driver
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getUser()
+    public function getDriver()
     {
-        return $this->user;
+        return $this->driver;
     }
 }
 

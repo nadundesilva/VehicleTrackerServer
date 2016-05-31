@@ -1,3 +1,24 @@
-fuel_fill_up_homepage:
+fuel_fill_up_get_all:
     path:     /
-    defaults: { _controller: FuelFillUpBundle:Default:index }
+    defaults: { _controller: CheckInBundle:View:getAll }
+    methods:  ['GET']
+
+fuel_fill_up_add:
+    path:     /
+    defaults: { _controller: CheckInBundle:Manage:create }
+    methods:  ['POST']
+
+fuel_fill_up_get:
+    path:     /{check_in_id}/
+    defaults: { _controller: CheckInBundle:View:get }
+    methods:  ['GET']
+
+fuel_fill_up_update:
+    path:     /{check_in_id}/
+    defaults: { _controller: CheckInBundle:Manage:update }
+    methods:  ['PUT']
+
+fuel_fill_up_remove:
+    path:     /{check_in_id}/
+    defaults: { _controller: CheckInBundle:Manage:remove }
+    methods:  ['DELETE']
