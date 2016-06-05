@@ -89,7 +89,7 @@ class ManageController extends Controller {
                                 $check_in->setDescription($request_data->check_in->description);
 
                                 $em = $this->getDoctrine()->getManager();
-                                $em->persist($vehicle);
+                                $em->persist($check_in);
                                 $em->flush();
                                 $response_text = $this->get('constants')->response->STATUS_SUCCESS;
                             } else {

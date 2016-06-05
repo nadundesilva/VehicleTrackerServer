@@ -1,6 +1,10 @@
 <?php
 
 namespace FuelFillUpBundle\Entity;
+
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
 use CoreBundle\Entity\User;
 use VehicleBundle\Entity\Vehicle;
 
@@ -10,36 +14,43 @@ use VehicleBundle\Entity\Vehicle;
 class FillUp
 {
     /**
+     * @Groups({"view"})
      * @var float
      */
     private $odoMeterReading;
 
     /**
+     * @Groups({"list", "view"})
      * @var string
      */
     private $litres;
 
     /**
+     * @Groups({"list", "view"})
      * @var string
      */
     private $price;
 
     /**
+     * @Groups({"view"})
      * @var string
      */
     private $stationLat;
 
     /**
+     * @Groups({"view"})
      * @var string
      */
     private $stationLong;
 
     /**
+     * @Groups({"list", "view"})
      * @var \DateTime
      */
     private $timestamp;
 
     /**
+     * @Groups({"list", "view"})
      * @var integer
      */
     private $id;
@@ -259,6 +270,26 @@ class FillUp
     public function getCreator()
     {
         return $this->creator;
+    }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("creator")
+     * @Groups({"list", "view"})
+     */
+    public function getCreatorID()
+    {
+        return $this->creator->getUsername();
+    }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("vehicle")
+     * @Groups({"view"})
+     */
+    public function getVehicleLicensePlateNo()
+    {
+        return $this->vehicle->getLicensePlateNo();
     }
 }
 

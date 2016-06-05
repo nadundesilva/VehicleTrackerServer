@@ -1,8 +1,8 @@
 <?php
 
-namespace CheckInBundle\DataFixtures\ORM;
+namespace MiscCostBundle\DataFixtures\ORM;
 
-use CheckInBundle\Entity\CheckIn;
+use MiscCostBundle\Entity\MiscCost;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -30,48 +30,39 @@ class LoadTestFuelFillUpData extends AbstractFixture implements OrderedFixtureIn
         // Creating general fuel fill ups
         $i = 0;
         while ($i < 10) {
-            $check_in = (new FillUp())
-                ->setOdoMeterReading(40000)
-                ->setLitres(10 + $i)
-                ->setPrice(80.64 + $i)
-                ->setStationLat(7.6546 + $i)
-                ->setStationLong(80.6451 + $i)
+            $misc_cost = (new MiscCost())
+                ->setType('testMiscellaneousCost' . $i)
+                ->setValue(1253.50 + $i)
                 ->setTimestamp(new \DateTime())
                 ->setVehicle($this->getReference('test-vehicle-1' . $i))
                 ->setCreator($this->getReference('test-user-0'));
-            $manager->persist($check_in);
+            $manager->persist($misc_cost);
             $manager->flush();
             $i++;
         }
 
         $i = 0;
         while ($i < 10) {
-            $check_in = (new FillUp())
-                ->setOdoMeterReading(40000)
-                ->setLitres(10 + $i)
-                ->setPrice(80.64 + $i)
-                ->setStationLat(7.6546 + $i)
-                ->setStationLong(80.6451 + $i)
+            $misc_cost = (new MiscCost())
+                ->setType('testMiscellaneousCost' . $i)
+                ->setValue(1253.50 + $i)
                 ->setTimestamp(new \DateTime())
                 ->setVehicle($this->getReference('test-vehicle-1' . $i))
                 ->setCreator($this->getReference('test-user-1'));
-            $manager->persist($check_in);
+            $manager->persist($misc_cost);
             $manager->flush();
             $i++;
         }
 
         $i = 0;
         while ($i < 10) {
-            $check_in = (new FillUp())
-                ->setOdoMeterReading(40000)
-                ->setLitres(10 + $i)
-                ->setPrice(80.64 + $i)
-                ->setStationLat(7.6546 + $i)
-                ->setStationLong(80.6451 + $i)
+            $misc_cost = (new MiscCost())
+                ->setType('testMiscellaneousCost' . $i)
+                ->setValue(1253.50 + $i)
                 ->setTimestamp(new \DateTime())
                 ->setVehicle($this->getReference('test-vehicle-2' . $i))
                 ->setCreator($this->getReference('test-user-1'));
-            $manager->persist($check_in);
+            $manager->persist($misc_cost);
             $manager->flush();
             $i++;
         }
@@ -83,7 +74,7 @@ class LoadTestFuelFillUpData extends AbstractFixture implements OrderedFixtureIn
      * @return int
      */
     public function getOrder() {
-        return 5;
+        return 6;
     }
 
     /**

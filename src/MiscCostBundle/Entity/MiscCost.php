@@ -1,6 +1,10 @@
 <?php
 
 namespace MiscCostBundle\Entity;
+
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
 use CoreBundle\Entity\User;
 use VehicleBundle\Entity\Vehicle;
 
@@ -10,21 +14,25 @@ use VehicleBundle\Entity\Vehicle;
 class MiscCost
 {
     /**
+     * @Groups({"list", "view"})
      * @var string
      */
     private $type;
 
     /**
+     * @Groups({"list", "view"})
      * @var string
      */
     private $value;
 
     /**
+     * @Groups({"view"})
      * @var \DateTime
      */
-    private $timestamp = 'CURRENT_TIMESTAMP';
+    private $timestamp;
 
     /**
+     * @Groups({"list", "view"})
      * @var integer
      */
     private $id;
@@ -172,6 +180,26 @@ class MiscCost
     public function getCreator()
     {
         return $this->creator;
+    }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("creator")
+     * @Groups({"list", "view"})
+     */
+    public function getCreatorID()
+    {
+        return $this->creator->getUsername();
+    }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("vehicle")
+     * @Groups({"view"})
+     */
+    public function getVehicleLicensePlateNo()
+    {
+        return $this->vehicle->getLicensePlateNo();
     }
 }
 

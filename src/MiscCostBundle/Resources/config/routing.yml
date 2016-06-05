@@ -1,3 +1,24 @@
-misc_cost_homepage:
+misc_cost_get_all:
     path:     /
-    defaults: { _controller: MiscCostBundle:Default:index }
+    defaults: { _controller: MiscCostBundle:View:getAll }
+    methods:  ['GET']
+
+misc_cost_add:
+    path:     /
+    defaults: { _controller: MiscCostBundle:Manage:create }
+    methods:  ['POST']
+
+misc_cost_get:
+    path:     /{misc_cost_id}/
+    defaults: { _controller: MiscCostBundle:View:get }
+    methods:  ['GET']
+
+misc_cost_update:
+    path:     /{misc_cost_id}/
+    defaults: { _controller: MiscCostBundle:Manage:update }
+    methods:  ['PUT']
+
+misc_cost_remove:
+    path:     /{misc_cost_id}/
+    defaults: { _controller: MiscCostBundle:Manage:remove }
+    methods:  ['DELETE']
