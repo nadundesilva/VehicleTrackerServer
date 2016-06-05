@@ -93,7 +93,7 @@ class CheckInControllerTest extends BaseFunctionalTest {
     /**
      * Functional Test
      *
-     * For testing src\CheckInBundle\Controller\ManageController getAction getting a specific vehicle
+     * For testing src\CheckInBundle\Controller\ManageController getAction getting a specific check in
      *
      * @dataProvider checkInGetDataProvider
      *
@@ -103,7 +103,7 @@ class CheckInControllerTest extends BaseFunctionalTest {
      * @param string $response_status
      * @param boolean $check_in_returned
      */
-    public function testVehicleGet($user_logged_in, $license_plate_no, $check_in_id, $response_status, $check_in_returned) {
+    public function testCheckInGet($user_logged_in, $license_plate_no, $check_in_id, $response_status, $check_in_returned) {
         if($user_logged_in) {
             // Creating a mock session
             $this->session->set($this->constants->session->USERNAME, 'testUser0');
@@ -135,7 +135,7 @@ class CheckInControllerTest extends BaseFunctionalTest {
     /**
      * Data Provider
      *
-     * For providing data for testing src\CheckInBundle\Controller\ViewController getAction getting a specific vehicle
+     * For providing data for testing src\CheckInBundle\Controller\ViewController getAction getting a specific check in
      *
      * @return array
      */

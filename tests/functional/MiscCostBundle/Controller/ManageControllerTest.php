@@ -8,8 +8,8 @@ use Tests\BaseFunctionalTest;
 /*
  * Functional Tests
  *
- * For testing the check in bundle manage controller
- * src\CheckInBundle\Controller\ManageController
+ * For testing the miscellaneous cost bundle manage controller
+ * src\MiscCostBundle\Controller\ManageController
  */
 class ManageControllerTest extends BaseFunctionalTest {
     /**

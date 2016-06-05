@@ -8,8 +8,8 @@ use Tests\BaseFunctionalTest;
 /*
  * Functional Tests
  *
- * For testing the check in bundle manage controller
- * src\CheckInBundle\Controller\ManageController
+ * For testing the fuel fill up bundle manage controller
+ * src\FuelFillUpBundle\Controller\ManageController
  */
 class ViewControllerTest extends BaseFunctionalTest {
     /**
@@ -93,17 +93,17 @@ class ViewControllerTest extends BaseFunctionalTest {
     /**
      * Functional Test
      *
-     * For testing src\FuelFillUpBundle\Controller\ManageController getAction getting a specific vehicle
+     * For testing src\FuelFillUpBundle\Controller\ManageController getAction getting a specific fuel fill up
      *
      * @dataProvider fuelFillUpGetDataProvider
      *
      * @param boolean $user_logged_in
      * @param string $license_plate_no
-     * @param string $fuel_fill_up_id
+     * @param int $fuel_fill_up_id
      * @param string $response_status
-     * @param bolean $fuel_fill_up_returned
+     * @param boolean $fuel_fill_up_returned
      */
-    public function testVehicleGet($user_logged_in, $license_plate_no, $fuel_fill_up_id, $response_status, $fuel_fill_up_returned) {
+    public function testFuelFillUpGet($user_logged_in, $license_plate_no, $fuel_fill_up_id, $response_status, $fuel_fill_up_returned) {
         if($user_logged_in) {
             // Creating a mock session
             $this->session->set($this->constants->session->USERNAME, 'testUser0');
@@ -135,7 +135,7 @@ class ViewControllerTest extends BaseFunctionalTest {
     /**
      * Data Provider
      *
-     * For providing data for testing src\VehicleBundle\Controller\ViewController getAction getting a specific vehicle
+     * For providing data for testing src\FuelFillUpBundle\Controller\ViewController getAction getting a specific fuel fill up
      *
      * @return array
      */
