@@ -37,7 +37,7 @@ class CheckIn
      * @Groups({"list", "view"})
      * @var \DateTime
      */
-    private $timestamp = 'CURRENT_TIMESTAMP';
+    private $timestamp;
 
     /**
      * @Groups({"list", "view"})
@@ -54,6 +54,11 @@ class CheckIn
      * @var User
      */
     private $creator;
+    
+    public function __construct()
+    {
+        $this->timestamp = new \DateTime();
+    }
 
 
     /**

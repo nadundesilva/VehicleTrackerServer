@@ -10,7 +10,7 @@ use VehicleBundle\Entity\Vehicle;
 class FillUp
 {
     /**
-     * @var integer
+     * @var float
      */
     private $odoMeterReading;
 
@@ -37,7 +37,7 @@ class FillUp
     /**
      * @var \DateTime
      */
-    private $timestamp = 'CURRENT_TIMESTAMP';
+    private $timestamp;
 
     /**
      * @var integer
@@ -54,7 +54,11 @@ class FillUp
      */
     private $creator;
 
-
+    public function __construct()
+    {
+        $this->timestamp = new \DateTime();
+    }
+    
     /**
      * Set odoMeterReading
      *

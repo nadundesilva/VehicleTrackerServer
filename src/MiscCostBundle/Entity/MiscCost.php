@@ -39,6 +39,10 @@ class MiscCost
      */
     private $creator;
 
+    public function __construct()
+    {
+        $this->timestamp = new \DateTime();
+    }
 
     /**
      * Set type

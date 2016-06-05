@@ -11,7 +11,7 @@ use Tests\BaseFunctionalTest;
  * For testing the check in bundle manage controller
  * src\CheckInBundle\Controller\ManageController
  */
-class CheckInControllerTest extends BaseFunctionalTest {
+class ViewControllerTest extends BaseFunctionalTest {
     /**
      * Functional Test
      *

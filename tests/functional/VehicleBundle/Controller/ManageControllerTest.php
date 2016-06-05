@@ -311,7 +311,7 @@ class ManageControllerTest extends BaseFunctionalTest {
     /**
      * Data Provider
      *
-     * For providing data for testing src\VehicleBundle\Controller\ManageController deleteAction deleting vehicle
+     * For providing data for testing src\FuelFillUpBundle\Controller\ManageController deleteAction deleting vehicle
      *
      * @return array
      */

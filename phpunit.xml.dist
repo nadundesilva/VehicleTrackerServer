@@ -4,7 +4,6 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
          backupGlobals="false"
-         colors="true"
          bootstrap="app/bootstrap.php">
     <php>
         <ini name="error_reporting" value="-1" />
@@ -12,8 +11,11 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Unit Test Suite">
+            <directory>tests/unit</directory>
+        </testsuite>
+        <testsuite name="Functional Test Suite">
+            <directory>tests/functional</directory>
         </testsuite>
     </testsuites>
 

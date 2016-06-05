@@ -43,7 +43,7 @@ class User
     /**
      * @var \DateTime
      */
-    private $lastLoginTime = 'CURRENT_TIMESTAMP';
+    private $lastLoginTime;
 
     /**
      * @var string
@@ -61,6 +61,7 @@ class User
     public function __construct()
     {
         $this->vehicle = new ArrayCollection();
+        $this->timestamp = new \DateTime();
     }
 
     /**

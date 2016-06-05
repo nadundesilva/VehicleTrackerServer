@@ -6,6 +6,7 @@ use CheckInBundle\Entity\CheckIn;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use FuelFillUpBundle\Entity\FillUp;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -14,25 +15,27 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * Only used in test environment
  */
-class LoadTestCheckInData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
+class LoadTestFuelFillUpData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
     /**
      * @var ContainerInterface
      */
     private $container;
 
     /**
-     * Loads the check in objects for testing
+     * Loads the fuel fill up objects for testing
      *
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager) {
-        // Creating general check ins
+        // Creating general fuel fill ups
         $i = 0;
         while ($i < 10) {
-            $check_in = (new CheckIn())
-                ->setDescription('testDescription' . $i)
-                ->setLat(7.6546 + $i)
-                ->setLong(80.6451 + $i)
+            $check_in = (new FillUp())
+                ->setOdoMeterReading(40000)
+                ->setLitres(10 + $i)
+                ->setPrice(80.64 + $i)
+                ->setStationLat(7.6546 + $i)
+                ->setStationLong(80.6451 + $i)
                 ->setTimestamp(new \DateTime())
                 ->setVehicle($this->getReference('test-vehicle-1' . $i))
                 ->setCreator($this->getReference('test-user-0'));
@@ -43,10 +46,12 @@ class LoadTestCheckInData extends AbstractFixture implements OrderedFixtureInter
 
         $i = 0;
         while ($i < 10) {
-            $check_in = (new CheckIn())
-                ->setDescription('testNotOwnedDescription' . $i)
-                ->setLat(7.9846 + $i)
-                ->setLong(80.2162 + $i)
+            $check_in = (new FillUp())
+                ->setOdoMeterReading(40000)
+                ->setLitres(10 + $i)
+                ->setPrice(80.64 + $i)
+                ->setStationLat(7.6546 + $i)
+                ->setStationLong(80.6451 + $i)
                 ->setTimestamp(new \DateTime())
                 ->setVehicle($this->getReference('test-vehicle-1' . $i))
                 ->setCreator($this->getReference('test-user-1'));
@@ -57,10 +62,12 @@ class LoadTestCheckInData extends AbstractFixture implements OrderedFixtureInter
 
         $i = 0;
         while ($i < 10) {
-            $check_in = (new CheckIn())
-                ->setDescription('testNotOwnedDescription' . $i)
-                ->setLat(7.4275 + $i)
-                ->setLong(80.6752 + $i)
+            $check_in = (new FillUp())
+                ->setOdoMeterReading(40000)
+                ->setLitres(10 + $i)
+                ->setPrice(80.64 + $i)
+                ->setStationLat(7.6546 + $i)
+                ->setStationLong(80.6451 + $i)
                 ->setTimestamp(new \DateTime())
                 ->setVehicle($this->getReference('test-vehicle-2' . $i))
                 ->setCreator($this->getReference('test-user-1'));

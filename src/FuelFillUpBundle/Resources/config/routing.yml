@@ -1,24 +1,24 @@
 fuel_fill_up_get_all:
     path:     /
-    defaults: { _controller: CheckInBundle:View:getAll }
+    defaults: { _controller: FuelFillUpBundle:View:getAll }
     methods:  ['GET']
 
 fuel_fill_up_add:
     path:     /
-    defaults: { _controller: CheckInBundle:Manage:create }
+    defaults: { _controller: FuelFillUpBundle:Manage:create }
     methods:  ['POST']
 
 fuel_fill_up_get:
-    path:     /{check_in_id}/
-    defaults: { _controller: CheckInBundle:View:get }
+    path:     /{fuel_fill_up_id}/
+    defaults: { _controller: FuelFillUpBundle:View:get }
     methods:  ['GET']
 
 fuel_fill_up_update:
-    path:     /{check_in_id}/
-    defaults: { _controller: CheckInBundle:Manage:update }
+    path:     /{fuel_fill_up_id}/
+    defaults: { _controller: FuelFillUpBundle:Manage:update }
     methods:  ['PUT']
 
 fuel_fill_up_remove:
-    path:     /{check_in_id}/
-    defaults: { _controller: CheckInBundle:Manage:remove }
+    path:     /{fuel_fill_up_id}/
+    defaults: { _controller: FuelFillUpBundle:Manage:remove }
     methods:  ['DELETE']

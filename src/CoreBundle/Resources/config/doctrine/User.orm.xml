@@ -39,11 +39,7 @@
         <option name="default">1</option>
       </options>
     </field>
-    <field name="lastLoginTime" type="datetime" column="last_login_time" nullable="false">
-      <options>
-        <option name="default">CURRENT_TIMESTAMP</option>
-      </options>
-    </field>
+    <field name="lastLoginTime" type="datetime" column="last_login_time" nullable="false"/>
     <many-to-many field="vehicle" target-entity="VehicleBundle\Entity\Vehicle" mapped-by="driver" fetch="LAZY"/>
   </entity>
 </doctrine-mapping>
