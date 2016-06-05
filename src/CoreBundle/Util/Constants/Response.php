@@ -13,6 +13,8 @@ class Response {
     public $DRIVERS = "drivers";
     public $CHECK_IN = "check_in";
     public $CHECK_INS = "check_ins";
+    public $FUEL_FILL_UP = "fuel_fill_up";
+    public $FUEL_FILL_UPS = "fuel_fill_ups";
 
     /*
      * General

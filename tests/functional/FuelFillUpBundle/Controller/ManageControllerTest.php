@@ -68,7 +68,6 @@ class ManageControllerTest extends BaseFunctionalTest {
         $response = $this->client->getResponse();
 
         // Assertions
-        echo $response->getContent();
         $this->assertSuccessfulResponse($response);
         $this->assertEquals($response_status, json_decode($response->getContent())->status);
         if($user_logged_in) {

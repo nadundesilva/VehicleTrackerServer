@@ -2,43 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="078909b4-cd8e-4101-b557-2f252cb142a4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/VehicleTracker.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FuelFillUpBundle/DataFixtures/ORM/LoadTestFuelFillUpData.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/functional/FuelFillUpBundle/Controller/ManageControllerTest.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/FuelFillUpBundle/Controller/ManageControllerTest.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/test_db_sqlite" afterPath="$PROJECT_DIR$/web/test_db_sqlite" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/parameters.yml.dist" afterPath="$PROJECT_DIR$/app/config/parameters.yml.dist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpunit.xml.dist" afterPath="$PROJECT_DIR$/phpunit.xml.dist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CheckInBundle/DataFixtures/ORM/LoadTestCheckInData.php" afterPath="$PROJECT_DIR$/src/CheckInBundle/DataFixtures/ORM/LoadTestCheckInData.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CheckInBundle/Entity/CheckIn.php" afterPath="$PROJECT_DIR$/src/CheckInBundle/Entity/CheckIn.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CheckInBundle/Resources/config/doctrine/CheckIn.orm.xml" afterPath="$PROJECT_DIR$/src/CheckInBundle/Resources/config/doctrine/CheckIn.orm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CoreBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/CoreBundle/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CoreBundle/Resources/config/doctrine/User.orm.xml" afterPath="$PROJECT_DIR$/src/CoreBundle/Resources/config/doctrine/User.orm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CoreBundle/Util/Constants/Response.php" afterPath="$PROJECT_DIR$/src/CoreBundle/Util/Constants/Response.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FuelFillUpBundle/Controller/ManageController.php" afterPath="$PROJECT_DIR$/src/FuelFillUpBundle/Controller/ManageController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FuelFillUpBundle/Entity/FillUp.php" afterPath="$PROJECT_DIR$/src/FuelFillUpBundle/Entity/FillUp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FuelFillUpBundle/Resources/config/doctrine/FillUp.orm.xml" afterPath="$PROJECT_DIR$/src/FuelFillUpBundle/Resources/config/doctrine/FillUp.orm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FuelFillUpBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/FuelFillUpBundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MiscCostBundle/Entity/MiscCost.php" afterPath="$PROJECT_DIR$/src/MiscCostBundle/Entity/MiscCost.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MiscCostBundle/Resources/config/doctrine/MiscCost.orm.xml" afterPath="$PROJECT_DIR$/src/MiscCostBundle/Resources/config/doctrine/MiscCost.orm.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/BaseFunctionalTest.php" afterPath="$PROJECT_DIR$/tests/functional/BaseFunctionalTest.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/BaseUnitTest.php" afterPath="$PROJECT_DIR$/tests/unit/BaseUnitTest.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/CheckInBundle/Controller/ManageControllerTest.php" afterPath="$PROJECT_DIR$/tests/functional/CheckInBundle/Controller/ManageControllerTest.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/CheckInBundle/Controller/ViewControllerTest.php" afterPath="$PROJECT_DIR$/tests/functional/CheckInBundle/Controller/ViewControllerTest.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/CoreBundle/Controller/AuthenticationControllerTest.php" afterPath="$PROJECT_DIR$/tests/functional/CoreBundle/Controller/AuthenticationControllerTest.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/CoreBundle/Util/LoginAuthenticatorTest.php" afterPath="$PROJECT_DIR$/tests/unit/CoreBundle/Util/LoginAuthenticatorTest.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/FuelFillUpBundle/Controller/ViewControllerTest.php" afterPath="$PROJECT_DIR$/tests/functional/FuelFillUpBundle/Controller/ViewControllerTest.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/VehicleBundle/Controller/DriverControllerTest.php" afterPath="$PROJECT_DIR$/tests/functional/VehicleBundle/Controller/DriverControllerTest.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/VehicleBundle/Controller/ManageControllerTest.php" afterPath="$PROJECT_DIR$/tests/functional/VehicleBundle/Controller/ManageControllerTest.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/VehicleBundle/Controller/ViewControllerTest.php" afterPath="$PROJECT_DIR$/tests/functional/VehicleBundle/Controller/ViewControllerTest.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/VehicleTracker.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/symfony2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="VehicleTracker.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,28 +34,18 @@
       <file leaf-file-name="Response.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CoreBundle/Util/Constants/Response.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="49" column="65" selection-start-line="49" selection-start-column="65" selection-end-line="49" selection-end-column="65" />
+            <state relative-caret-position="699">
+              <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FuelFillUpBundle/Controller/ViewController.php">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewControllerTest.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/functional/FuelFillUpBundle/Controller/ViewControllerTest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+            <state relative-caret-position="595">
+              <caret line="35" column="4" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -111,8 +71,6 @@
         <option value="$PROJECT_DIR$/tests/unit/BaseUnitTest.php" />
         <option value="$PROJECT_DIR$/tests/functional/BaseFunctionalTest.php" />
         <option value="$PROJECT_DIR$/phpunit.xml.dist" />
-        <option value="$PROJECT_DIR$/tests/functional/FuelFillUpBundle/Controller/ViewControllerTest.php" />
-        <option value="$PROJECT_DIR$/src/CoreBundle/Util/Constants/Response.php" />
         <option value="$PROJECT_DIR$/tests/functional/CheckInBundle/Controller/ManageControllerTest.php" />
         <option value="$PROJECT_DIR$/src/FuelFillUpBundle/Entity/FillUp.php" />
         <option value="$PROJECT_DIR$/src/FuelFillUpBundle/Resources/config/doctrine/FillUp.orm.xml" />
@@ -123,7 +81,12 @@
         <option value="$PROJECT_DIR$/src/FuelFillUpBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/CheckInBundle/Controller/ManageController.php" />
         <option value="$PROJECT_DIR$/tests/functional/VehicleBundle/Controller/ManageControllerTest.php" />
+        <option value="$PROJECT_DIR$/src/CoreBundle/Util/Constants/Response.php" />
+        <option value="$PROJECT_DIR$/src/CoreBundle/Util/Constants/Database.php" />
+        <option value="$PROJECT_DIR$/tests/functional/CheckInBundle/Controller/ViewControllerTest.php" />
+        <option value="$PROJECT_DIR$/src/FuelFillUpBundle/Controller/ViewController.php" />
         <option value="$PROJECT_DIR$/tests/functional/FuelFillUpBundle/Controller/ManageControllerTest.php" />
+        <option value="$PROJECT_DIR$/tests/functional/FuelFillUpBundle/Controller/ViewControllerTest.php" />
       </list>
     </option>
   </component>
@@ -494,29 +457,26 @@
       <workItem from="1465119917836" duration="67000" />
       <workItem from="1465119999852" duration="2065000" />
       <workItem from="1465131444165" duration="1047000" />
-      <workItem from="1465132508979" duration="8099000" />
+      <workItem from="1465132508979" duration="10309000" />
     </task>
+    <task id="LOCAL-00001" summary="Added manage fuel fill up functionality and testing methods for fuel fill up managing">
+      <created>1465141003259</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1465141003259</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added view fuel fill up functionality and testing methods for fuel fill up viewing">
+      <created>1465142586829</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1465142586829</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unit_Tests - 2016.06.05 at 20h 32m 53s.xml">
-      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Unit_Tests - 2016.06.05 at 20h 39m 00s.xml">
-      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Unit_Tests - 2016.06.05 at 20h 41m 37s.xml">
-      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Unit_Tests - 2016.06.05 at 20h 45m 12s.xml">
-      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Unit_Tests - 2016.06.05 at 20h 46m 49s.xml">
-      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Unit_Tests - 2016.06.05 at 20h 54m 26s.xml">
-      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="Unit_Tests - 2016.06.05 at 20h 55m 17s.xml">
       <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
@@ -529,9 +489,27 @@
     <history-entry file="Unit_Tests - 2016.06.05 at 21h 00m 33s.xml">
       <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="Unit_Tests - 2016.06.05 at 21h 23m 02s.xml">
+      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Unit_Tests - 2016.06.05 at 21h 27m 06s.xml">
+      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Unit_Tests - 2016.06.05 at 21h 28m 15s.xml">
+      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Unit_Tests - 2016.06.05 at 21h 29m 35s.xml">
+      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Unit_Tests - 2016.06.05 at 21h 31m 33s.xml">
+      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Unit_Tests - 2016.06.05 at 21h 32m 18s.xml">
+      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23014000" />
+    <option name="totallyTimeSpent" value="25224000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -541,8 +519,9 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32936078" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.4978678" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -552,7 +531,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -567,6 +545,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added manage fuel fill up functionality and testing methods for fuel fill up managing" />
+    <MESSAGE value="Added view fuel fill up functionality and testing methods for fuel fill up viewing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added view fuel fill up functionality and testing methods for fuel fill up viewing" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="2" />
@@ -574,21 +557,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/CoreBundle/Controller/AuthenticationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="58" column="60" selection-start-line="58" selection-start-column="60" selection-end-line="58" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phpunit.xml.dist">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CheckInBundle/Controller/ManageController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -685,13 +653,6 @@
     <entry file="file://$PROJECT_DIR$/app/config/parameters.yml.dist">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/functional/CheckInBundle/Controller/ViewControllerTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -784,13 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-145">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CoreBundle/Util/Constants/Retriever.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -887,14 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/functional/CheckInBundle/Controller/ManageControllerTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="150" column="21" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CheckInBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -937,10 +883,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/CoreBundle/Util/Constants/Retriever.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CoreBundle/Util/Constants/Database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/functional/CheckInBundle/Controller/ManageControllerTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1075">
+          <caret line="150" column="21" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/functional/CheckInBundle/Controller/ViewControllerTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="97" column="43" selection-start-line="97" selection-start-column="43" selection-end-line="97" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/functional/FuelFillUpBundle/Controller/ManageControllerTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2843">
-          <caret line="327" column="14" selection-start-line="327" selection-start-column="14" selection-end-line="327" selection-end-column="14" />
+        <state relative-caret-position="161">
+          <caret line="69" column="21" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+          <folding>
+            <element signature="e#53#93#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FuelFillUpBundle/Controller/ViewController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/functional/FuelFillUpBundle/Controller/ViewControllerTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="125" column="86" selection-start-line="125" selection-start-column="86" selection-end-line="125" selection-end-column="86" />
           <folding>
             <element signature="e#53#93#0#PHP" expanded="true" />
           </folding>
@@ -949,24 +945,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CoreBundle/Util/Constants/Response.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="49" column="65" selection-start-line="49" selection-start-column="65" selection-end-line="49" selection-end-column="65" />
+        <state relative-caret-position="699">
+          <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FuelFillUpBundle/Controller/ViewController.php">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/functional/FuelFillUpBundle/Controller/ViewControllerTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        <state relative-caret-position="595">
+          <caret line="35" column="4" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="4" />
           <folding />
         </state>
       </provider>

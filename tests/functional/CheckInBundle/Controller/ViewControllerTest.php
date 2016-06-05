@@ -20,9 +20,9 @@ class CheckInControllerTest extends BaseFunctionalTest {
      * @dataProvider checkInGetAllDataProvider
      *
      * @param boolean $user_logged_in
-     * @param $license_plate_no
+     * @param string $license_plate_no
      * @param int $response_status
-     * @param $check_ins_count
+     * @param int $check_ins_count
      */
     public function testCheckInGetAll($user_logged_in, $license_plate_no, $response_status, $check_ins_count) {
         if($user_logged_in) {
@@ -93,15 +93,15 @@ class CheckInControllerTest extends BaseFunctionalTest {
     /**
      * Functional Test
      *
-     * For testing src\VehicleBundle\Controller\ManageController getAction getting a specific vehicle
+     * For testing src\CheckInBundle\Controller\ManageController getAction getting a specific vehicle
      *
-     * @dataProvider vehicleGetDataProvider
+     * @dataProvider checkInGetDataProvider
      *
      * @param boolean $user_logged_in
      * @param string $license_plate_no
-     * @param $check_in_id
+     * @param int $check_in_id
      * @param string $response_status
-     * @param $check_in_returned
+     * @param boolean $check_in_returned
      */
     public function testVehicleGet($user_logged_in, $license_plate_no, $check_in_id, $response_status, $check_in_returned) {
         if($user_logged_in) {
@@ -135,11 +135,11 @@ class CheckInControllerTest extends BaseFunctionalTest {
     /**
      * Data Provider
      *
-     * For providing data for testing src\VehicleBundle\Controller\ViewController getAction getting a specific vehicle
+     * For providing data for testing src\CheckInBundle\Controller\ViewController getAction getting a specific vehicle
      *
      * @return array
      */
-    public function vehicleGetDataProvider() {
+    public function checkInGetDataProvider() {
         $constants = new Retriever();
 
         return array(

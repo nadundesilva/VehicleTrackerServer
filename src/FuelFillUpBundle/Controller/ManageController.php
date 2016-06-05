@@ -85,7 +85,7 @@ class ManageController extends Controller {
                         }
                     }
                     if (isset($is_a_driver) || $vehicle->getOwner()->getUsername() == $user->getUsername()) {
-                        $fuel_fill_up = $this->getDoctrine()->getRepository($this->get('constants')->database->FILL_UP_REPOSITORY)->find($fuel_fill_up_id);
+                        $fuel_fill_up = $this->getDoctrine()->getRepository($this->get('constants')->database->FUEL_FILL_UP_REPOSITORY)->find($fuel_fill_up_id);
                         if (isset($fuel_fill_up)) {
                             if ($fuel_fill_up->getCreator()->getUsername() == $user->getUsername()) {
                                 $fuel_fill_up->setOdoMeterReading($request_data->fuel_fill_up->odo_meter_reading)
@@ -129,7 +129,7 @@ class ManageController extends Controller {
      */
     public function removeAction($license_plate_no, $fuel_fill_up_id) {
         if ($user = $this->get('login_authenticator')->authenticateUser()) {
-            $fuel_fill_up = $this->getDoctrine()->getRepository($this->get('constants')->database->FILL_UP_REPOSITORY)->find($fuel_fill_up_id);
+            $fuel_fill_up = $this->getDoctrine()->getRepository($this->get('constants')->database->FUEL_FILL_UP_REPOSITORY)->find($fuel_fill_up_id);
             if (isset($fuel_fill_up)) {
                 $vehicle = $fuel_fill_up->getVehicle();
                 $driver_list = $vehicle->getDriver();
