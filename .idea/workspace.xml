@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="078909b4-cd8e-4101-b557-2f252cb142a4" name="Default" comment="Bug fix to vehicle bundle driver controller">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.html" />
+    <list default="true" id="078909b4-cd8e-4101-b557-2f252cb142a4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/test_db_sqlite" afterPath="$PROJECT_DIR$/web/test_db_sqlite" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CoreBundle/Controller/HomeController.php" afterPath="$PROJECT_DIR$/src/CoreBundle/Controller/HomeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CoreBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/CoreBundle/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CoreBundle/Util/Constants/Response.php" afterPath="$PROJECT_DIR$/src/CoreBundle/Util/Constants/Response.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/VehicleBundle/Controller/DriverController.php" afterPath="$PROJECT_DIR$/src/VehicleBundle/Controller/DriverController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/VehicleBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/VehicleBundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/functional/VehicleBundle/Controller/DriverControllerTest.php" afterPath="$PROJECT_DIR$/tests/functional/VehicleBundle/Controller/DriverControllerTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app.php" afterPath="$PROJECT_DIR$/web/app.php" />
     </list>
     <ignored path="VehicleTracker.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,37 +44,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/VehicleBundle/Resources/config/routing.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DriverController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DriverController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/VehicleBundle/Controller/DriverController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="25" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+            <state relative-caret-position="408">
+              <caret line="54" column="63" selection-start-line="54" selection-start-column="63" selection-end-line="54" selection-end-column="63" />
               <folding>
                 <element signature="e#44#84#0#PHP" expanded="true" />
-                <marker date="1465569814936" expanded="true" signature="2458:2465" ph="SELECT p, c AppBundle" />
-                <marker date="1465569814936" expanded="true" signature="2458:2631" ph="SELECT user.... CoreBundle" />
-                <marker date="1465569814936" expanded="true" signature="2458:2653" ph="SELECT DISTI... VehicleBundle" />
-                <marker date="1465569814936" expanded="true" signature="2654:2668" ph="LIKE :userna... " />
+                <marker date="1465570230954" expanded="true" signature="2452:2459" ph="SELECT p, c AppBundle" />
+                <marker date="1465570230954" expanded="true" signature="2452:2625" ph="SELECT user.... CoreBundle" />
+                <marker date="1465570230954" expanded="true" signature="2452:2647" ph="SELECT DISTI... VehicleBundle" />
+                <marker date="1465570230954" expanded="true" signature="2648:2662" ph="LIKE :userna... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DriverControllerTest.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/functional/VehicleBundle/Controller/DriverControllerTest.php">
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/VehicleBundle/Resources/config/routing.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="112" column="114" selection-start-line="112" selection-start-column="114" selection-end-line="112" selection-end-column="114" />
+            <state relative-caret-position="287">
+              <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -139,8 +122,8 @@
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/src/VehicleBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/web/app.php" />
-        <option value="$PROJECT_DIR$/src/VehicleBundle/Controller/DriverController.php" />
         <option value="$PROJECT_DIR$/tests/functional/VehicleBundle/Controller/DriverControllerTest.php" />
+        <option value="$PROJECT_DIR$/src/VehicleBundle/Controller/DriverController.php" />
       </list>
     </option>
   </component>
@@ -647,7 +630,7 @@
       <workItem from="1465272269646" duration="1577000" />
       <workItem from="1465310189225" duration="9700000" />
       <workItem from="1465354345667" duration="1220000" />
-      <workItem from="1465563222193" duration="1855000" />
+      <workItem from="1465563222193" duration="2777000" />
     </task>
     <task id="LOCAL-00001" summary="Added manage fuel fill up functionality and testing methods for fuel fill up managing">
       <created>1465141003259</created>
@@ -698,7 +681,14 @@
       <option name="project" value="LOCAL" />
       <updated>1465149731312</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Bug fix to vehicle bundle driver controller">
+      <created>1465569962826</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1465569962826</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -734,7 +724,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47357000" />
+    <option name="totallyTimeSpent" value="48279000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -775,7 +765,8 @@
     <MESSAGE value="Added view fuel fill up functionality and testing methods for fuel fill up viewing" />
     <MESSAGE value="Added manage miscellaneous cost functionality and testing methods for miscellaneous cost viewing" />
     <MESSAGE value="Added view miscellaneous cost functionality and testing methods for miscellaneous cost viewing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added view miscellaneous cost functionality and testing methods for miscellaneous cost viewing" />
+    <MESSAGE value="Bug fix to vehicle bundle driver controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix to vehicle bundle driver controller" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1116,14 +1107,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/VehicleBundle/Resources/config/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/app.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1132,25 +1115,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/VehicleBundle/Controller/DriverController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="25" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
-          <folding>
-            <element signature="e#44#84#0#PHP" expanded="true" />
-            <marker date="1465569814936" expanded="true" signature="2458:2465" ph="SELECT p, c AppBundle" />
-            <marker date="1465569814936" expanded="true" signature="2458:2631" ph="SELECT user.... CoreBundle" />
-            <marker date="1465569814936" expanded="true" signature="2458:2653" ph="SELECT DISTI... VehicleBundle" />
-            <marker date="1465569814936" expanded="true" signature="2654:2668" ph="LIKE :userna... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/functional/VehicleBundle/Controller/DriverControllerTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="112" column="114" selection-start-line="112" selection-start-column="114" selection-end-line="112" selection-end-column="114" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VehicleBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VehicleBundle/Controller/DriverController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="54" column="63" selection-start-line="54" selection-start-column="63" selection-end-line="54" selection-end-column="63" />
+          <folding>
+            <element signature="e#44#84#0#PHP" expanded="true" />
+            <marker date="1465570230954" expanded="true" signature="2452:2459" ph="SELECT p, c AppBundle" />
+            <marker date="1465570230954" expanded="true" signature="2452:2625" ph="SELECT user.... CoreBundle" />
+            <marker date="1465570230954" expanded="true" signature="2452:2647" ph="SELECT DISTI... VehicleBundle" />
+            <marker date="1465570230954" expanded="true" signature="2648:2662" ph="LIKE :userna... " />
+          </folding>
         </state>
       </provider>
     </entry>

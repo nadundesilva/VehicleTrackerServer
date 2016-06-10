@@ -52,7 +52,7 @@ class DriverController extends Controller {
             $vehicle = $this->getDoctrine()->getManager()->getRepository((new Retriever())->database->VEHICLE_REPOSITORY)->find($license_plate_no);
             if (isset($vehicle)) {
                 if ($vehicle->getOwner()->getUsername() == $user->getUsername()) {
-                    $users = $this->getDoctrine()->getEntityManager()
+                    $users = $this->getDoctrine()->getManager()
                         ->createQuery('SELECT DISTINCT driver.username AS username, driver.firstName AS first_name, driver.lastName AS last_name FROM VehicleBundle:Vehicle AS vehicle JOIN vehicle.driver AS driver WHERE driver.username LIKE :username')
                         ->setParameter('username', '%' . $username_search_key . '%')
                         ->getArrayResult();
