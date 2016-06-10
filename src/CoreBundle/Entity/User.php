@@ -1,6 +1,10 @@
 <?php
 
 namespace CoreBundle\Entity;
+
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use VehicleBundle\Entity\Vehicle;
@@ -11,16 +15,21 @@ use VehicleBundle\Entity\Vehicle;
 class User
 {
     /**
+     * @SerializedName("first_name")
+     * @Groups({"list", "view"})
      * @var string
      */
     private $firstName;
 
     /**
+     * @SerializedName("last_name")
+     * @Groups({"list", "view"})
      * @var string
      */
     private $lastName;
 
     /**
+     * @Groups({"view"})
      * @var string
      */
     private $email;
@@ -46,6 +55,7 @@ class User
     private $lastLoginTime;
 
     /**
+     * @Groups({"list", "view"})
      * @var string
      */
     private $username;

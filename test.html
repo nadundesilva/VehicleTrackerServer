@@ -1,0 +1,37 @@
+Dropping database schema...
+Database schema dropped successfully!
+ATTENTION: This operation should not be executed in a production environment.
+
+Creating database schema...
+Database schema created successfully!
+  [33m>[39m [32mloading [1] CoreBundle\DataFixtures\ORM\LoadTestUserData[39m
+  [33m>[39m [32mloading [2] VehicleBundle\DataFixtures\ORM\LoadTestVehicleData[39m
+  [33m>[39m [32mloading [3] VehicleBundle\DataFixtures\ORM\LoadTestDriverData[39m
+  [33m>[39m [32mloading [4] CheckInBundle\DataFixtures\ORM\LoadTestCheckInData[39m
+  [33m>[39m [32mloading [5] CheckInBundle\DataFixtures\ORM\LoadTestFuelFillUpData[39m
+  [33m>[39m [32mloading [6] MiscCostBundle\DataFixtures\ORM\LoadTestFuelFillUpData[39m
+PHPUnit 5.3.5 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 134 ( 47%)
+.....................................F{"status":"SUCCESS","users":[{"username":"testUser0","first_name":"testFirstName0","last_name":"testLastName0"},{"username":"testUser1","first_name":"testFirstName1","last_name":"testLastName1"}]}......................... 126 / 134 ( 94%)
+........                                                        134 / 134 (100%)
+
+Time: 20.96 seconds, Memory: 28.75MB
+
+There was 1 failure:
+
+1) Tests\VehicleBundle\Controller\DriverControllerTest::testVehicleNewDriverUserSearch with data set "Success" (true, 'TEST-LPN00', 'test', 'SUCCESS', 1)
+Failed asserting that 2 matches expected 1.
+
+D:\xampp\htdocs\VehicleTracker\tests\functional\VehicleBundle\Controller\DriverControllerTest.php:137
+D:\xampp\php\pear\PHPUnit\TextUI\Command.php:176
+D:\xampp\php\pear\PHPUnit\TextUI\Command.php:129
+
+FAILURES!
+Tests: 134, Assertions: 540, Failures: 1.
+
+[41;37mUnsilenced deprecation notices (1)[0m
+
+getEntityManager is deprecated since Symfony 2.1. Use getManager instead: 1x
+    1x in DriverControllerTest::testVehicleNewDriverUserSearch from Tests\VehicleBundle\Controller
+

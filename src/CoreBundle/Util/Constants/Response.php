@@ -7,6 +7,7 @@ namespace CoreBundle\Util\Constants;
  */
 class Response {
     public $STATUS = "status";
+    public $USERS = "users";
     public $VEHICLE = "vehicle";
     public $OWNED_VEHICLES = "owned_vehicles";
     public $MANAGED_VEHICLES = "managed_vehicles";

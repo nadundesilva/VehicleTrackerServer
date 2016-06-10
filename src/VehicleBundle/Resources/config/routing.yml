@@ -28,6 +28,11 @@ vehicle_driver_get_all:
     defaults: { _controller: VehicleBundle:Driver:getAll }
     methods:  ['GET']
 
+vehicle_driver_user_search:
+    path:     /{license_plate_no}/driver/user/{username_search_key}/
+    defaults: { _controller: VehicleBundle:Driver:getAllForAddingDriver }
+    methods:  ['GET']
+
 vehicle_driver_add:
     path:     /{license_plate_no}/driver/{username}/
     defaults: { _controller: VehicleBundle:Driver:add }
