@@ -14,10 +14,10 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="stationLat" type="decimal" column="station_lat" precision="7" scale="4" nullable="false"/>
-    <field name="stationLong" type="decimal" column="station_long" precision="7" scale="4" nullable="false"/>
+    <field name="stationLat" type="float" column="station_lat" nullable="false"/>
+    <field name="stationLong" type="float" column="station_long" nullable="false"/>
     <field name="timestamp" type="datetime" column="timestamp" nullable="false"/>
-    <field name="price" type="string" column="price" length="45" nullable="true">
+    <field name="price" type="float" column="price" nullable="true">
       <options>
         <option name="fixed"/>
       </options>

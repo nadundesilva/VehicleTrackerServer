@@ -8,8 +8,8 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="lat" type="decimal" column="lat" precision="6" scale="2" nullable="false"/>
-    <field name="long" type="decimal" column="long" precision="6" scale="2" nullable="false"/>
+    <field name="lat" type="float" column="lat" nullable="false"/>
+    <field name="long" type="float" column="long" nullable="false"/>
     <field name="timestamp" type="datetime" column="timestamp" nullable="false"/>
     <field name="description" type="text" column="description" length="65535" nullable="true">
       <options>
