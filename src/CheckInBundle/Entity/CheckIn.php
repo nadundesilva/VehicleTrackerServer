@@ -20,14 +20,14 @@ class CheckIn
     private $description;
 
     /**
-     * @SerializedName("longitude")
+     * @SerializedName("latitude")
      * @Groups({"view"})
      * @var string
      */
     private $lat;
 
     /**
-     * @SerializedName("latitude")
+     * @SerializedName("longitude")
      * @Groups({"view"})
      * @var string
      */

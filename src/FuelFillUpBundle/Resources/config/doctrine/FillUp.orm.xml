@@ -14,8 +14,8 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="stationLat" type="float" column="station_lat" nullable="false"/>
-    <field name="stationLong" type="float" column="station_long" nullable="false"/>
+    <field name="stationLat" type="float" column="station_latitude" nullable="false"/>
+    <field name="stationLong" type="float" column="station_longitude" nullable="false"/>
     <field name="timestamp" type="datetime" column="timestamp" nullable="false"/>
     <field name="price" type="float" column="price" nullable="true">
       <options>

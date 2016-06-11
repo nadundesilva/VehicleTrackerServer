@@ -22,7 +22,7 @@ class ViewControllerTest extends BaseFunctionalTest {
      * @param boolean $user_logged_in
      * @param int $response_status
      * @param int $owned_vehicles_count
-     * @param string $managed_vehicles_count
+     * @param int $managed_vehicles_count
      */
     public function testVehicleGetAll($user_logged_in, $response_status, $owned_vehicles_count, $managed_vehicles_count) {
         if($user_logged_in) {
@@ -55,7 +55,6 @@ class ViewControllerTest extends BaseFunctionalTest {
         } else {
             $this->assertNull($this->session->get($this->constants->session->USERNAME));
         }
-
     }
 
     /**
@@ -96,7 +95,7 @@ class ViewControllerTest extends BaseFunctionalTest {
      * @param boolean $user_logged_in
      * @param string $license_plate_no
      * @param string $response_status
-     * @param $vehicle_returned
+     * @param boolean $vehicle_returned
      */
     public function testVehicleGet($user_logged_in, $license_plate_no, $response_status, $vehicle_returned) {
         if($user_logged_in) {
@@ -159,6 +158,79 @@ class ViewControllerTest extends BaseFunctionalTest {
              * The session should exist
              */
             'Success' => array(true, 'TEST-LPN00', $constants->response->STATUS_SUCCESS, true),
+        );
+    }
+
+    /**
+     * Functional Test
+     *
+     * For testing src\VehicleBundle\Controller\ManageController getAllLicensePlateNosAction getting license plate nos of all vehicles
+     *
+     * @dataProvider licensePlateNosDataProvider
+     *
+     * @param boolean $user_logged_in
+     * @param string $response_status
+     * @param int $owned_vehicles_count
+     * @param int $managed_vehicles_count
+     */
+    public function testLicensePlateNosActionGetAll($user_logged_in, $response_status, $owned_vehicles_count, $managed_vehicles_count) {
+        if($user_logged_in) {
+            // Creating a mock session
+            $this->session->set($this->constants->session->USERNAME, 'testUser1');
+        }
+
+        // Requesting
+        $this->client->request('GET', '/vehicle/name/', array(), array(),
+            array(
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_X-Requested-With' => 'XMLHttpRequest',
+            ),
+            null
+        );
+        $response = $this->client->getResponse();
+
+        // Assertions
+        $this->assertSuccessfulResponse($response);
+        $results = json_decode($response->getContent());
+        $this->assertEquals($response_status, $results->status);
+        if($owned_vehicles_count != null) {
+            $this->assertEquals($owned_vehicles_count, sizeof($results->owned_vehicles));
+        }
+        if($managed_vehicles_count != null) {
+            $this->assertEquals($managed_vehicles_count, sizeof($results->managed_vehicles));
+        }
+        if($user_logged_in) {
+            $this->assertEquals('testUser1', $this->session->get($this->constants->session->USERNAME));
+        } else {
+            $this->assertNull($this->session->get($this->constants->session->USERNAME));
+        }
+    }
+
+    /**
+     * Data Provider
+     *
+     * For providing data for testing src\VehicleBundle\Controller\ManageController getAllLicensePlateNosAction getting license plate nos of all vehicles
+     *
+     * @return array
+     */
+    public function licensePlateNosDataProvider() {
+        $constants = new Retriever();
+
+        return array(
+            /*
+             * Should not retrieve the license plate nos of vehicles owned and managed
+             * For when the user trying to get the license plate nos of vehicles is not logged in
+             *
+             * The session does not exist
+             */
+            'UserNotLoggedIn' => array(false, $constants->response->STATUS_USER_NOT_LOGGED_IN, null, null),
+            /*
+             * Should return all the license plate nos of vehicles owned and managed by the user
+             * For when the request is a success
+             *
+             * The session should exist
+             */
+            'Success' => array(true, $constants->response->STATUS_SUCCESS, 10, 10),
         );
     }
 }

@@ -15,7 +15,7 @@ use Doctrine\Common\Collections\Collection;
 class Vehicle
 {
     /**
-     * @Groups({"list", "view"})
+     * @Groups({"list", "view", "names_list"})
      * @var string
      */
     private $name;
@@ -60,7 +60,7 @@ class Vehicle
 
     /**
      * @SerializedName("license_plate_no")
-     * @Groups({"list", "view"})
+     * @Groups({"list", "view", "names_list"})
      * @var string
      */
     private $licensePlateNo;

@@ -32,12 +32,14 @@ class FillUp
     private $price;
 
     /**
+     * @SerializedName("station_latitude")
      * @Groups({"view"})
      * @var string
      */
     private $stationLat;
 
     /**
+     * @SerializedName("station_longitude")
      * @Groups({"view"})
      * @var string
      */
