@@ -227,7 +227,17 @@ class CheckIn
 
     /**
      * @VirtualProperty
-     * @SerializedName("vehicle")
+     * @SerializedName("vehicle_name")
+     * @Groups({"view"})
+     */
+    public function getVehicleName()
+    {
+        return $this->vehicle->getName();
+    }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("vehicle_license_plate_no")
      * @Groups({"view"})
      */
     public function getVehicleLicensePlateNo()

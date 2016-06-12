@@ -8,8 +8,8 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="litres" type="decimal" column="litres" precision="6" scale="2" nullable="false"/>
-    <field name="odoMeterReading" type="decimal" column="odo_meter_reading" nullable="false">
+    <field name="litres" type="float" column="litres" nullable="false"/>
+    <field name="odoMeterReading" type="float" column="odo_meter_reading" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
