@@ -18,6 +18,7 @@ class Response {
     public $FUEL_FILL_UPS = "fuel_fill_ups";
     public $MISC_COST = "misc_cost";
     public $MISC_COSTS = "misc_costs";
+    public $REPORT = "report";
 
     /*
      * General
@@ -68,4 +69,9 @@ class Response {
     public $STATUS_MISC_COST_DOES_NOT_EXIST = "MISC_COST_DOES_NOT_EXIST";
     public $STATUS_MISC_COST_NOT_CREATOR = "MISC_COST_NOT_CREATOR";
     public $STATUS_MISC_COST_NOT_ASSIGNED_TO_VEHICLE = "MISC_COST_NOT_ASSIGNED_TO_VEHICLE";
+    
+    /*
+     * Reports related
+     */
+    public $STATUS_REPORT_INVALID_CRITERIA = "REPORT_INVALID_CRITERIA";
 }

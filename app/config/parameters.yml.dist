@@ -2,8 +2,8 @@ parameters:
     database_host:     ap-cdbr-azure-southeast-b.cloudapp.net
     database_port:     3306
     database_name:     vtrack
-    database_user:     bd1926aff0d863
-    database_password: 1e961f76
+    database_user:     b49e014ccf5ff3
+    database_password: c8400a43
 
     test_database_host:     null
     test_database_port:     null

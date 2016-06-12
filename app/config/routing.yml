@@ -17,3 +17,7 @@ misc_cost:
 vehicle:
     resource: "@VehicleBundle/Resources/config/routing.yml"
     prefix:   /vehicle
+
+report:
+    resource: "@ReportBundle/Resources/config/routing.yml"
+    prefix:   /report

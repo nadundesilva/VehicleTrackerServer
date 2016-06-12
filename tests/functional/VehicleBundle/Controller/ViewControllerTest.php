@@ -166,14 +166,14 @@ class ViewControllerTest extends BaseFunctionalTest {
      *
      * For testing src\VehicleBundle\Controller\ManageController getAllLicensePlateNosAction getting license plate nos of all vehicles
      *
-     * @dataProvider licensePlateNosDataProvider
+     * @dataProvider namesGetAllDataProvider
      *
      * @param boolean $user_logged_in
      * @param string $response_status
      * @param int $owned_vehicles_count
      * @param int $managed_vehicles_count
      */
-    public function testLicensePlateNosActionGetAll($user_logged_in, $response_status, $owned_vehicles_count, $managed_vehicles_count) {
+    public function namesActionGetAll($user_logged_in, $response_status, $owned_vehicles_count, $managed_vehicles_count) {
         if($user_logged_in) {
             // Creating a mock session
             $this->session->set($this->constants->session->USERNAME, 'testUser1');
@@ -213,7 +213,7 @@ class ViewControllerTest extends BaseFunctionalTest {
      *
      * @return array
      */
-    public function licensePlateNosDataProvider() {
+    public function namesGetAllDataProvider() {
         $constants = new Retriever();
 
         return array(

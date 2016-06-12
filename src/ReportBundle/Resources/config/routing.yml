@@ -1,0 +1,4 @@
+report_mileague:
+    path:     /mileage/
+    defaults: { _controller: ReportBundle:FuelFillUp:mileage }
+    methods:  ['GET']

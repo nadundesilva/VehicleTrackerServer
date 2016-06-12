@@ -91,7 +91,7 @@ class ViewController extends Controller {
     public function getAllNamesAction() {
         if ($user = $this->get('login_authenticator')->authenticateUser()) {
             $owned_vehicles = $this->getDoctrine()->getManager()
-                ->createQuery('SELECT DISTINCT vehicle.licensePlateNo AS license_plate_no, vehicle.name AS name FROM CheckInBundle:CheckIn AS check_in JOIN check_in.vehicle AS vehicle JOIN vehicle.owner AS owner WHERE owner.username = :owner')
+                ->createQuery('SELECT DISTINCT vehicle.licensePlateNo AS license_plate_no, vehicle.name AS name FROM VehicleBundle:Vehicle AS vehicle INNER JOIN vehicle.owner AS owner WHERE owner.username = :owner')
                 ->setParameter('owner', $user->getUsername())
                 ->getArrayResult();
             $managed_vehicles = $user->getVehicle();

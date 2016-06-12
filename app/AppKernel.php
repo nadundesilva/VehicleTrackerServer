@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             
             // External Libraries
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new ReportBundle\ReportBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
