@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="078909b4-cd8e-4101-b557-2f252cb142a4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/test_db_sqlite" afterPath="$PROJECT_DIR$/web/test_db_sqlite" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -33,18 +32,7 @@
     <favorites_list name="VehicleTracker" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ManageController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MiscCostBundle/Controller/ManageController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -68,7 +56,6 @@
         <option value="$PROJECT_DIR$/src/CoreBundle/Util/Constants/Database.php" />
         <option value="$PROJECT_DIR$/src/FuelFillUpBundle/Controller/ViewController.php" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/src/MiscCostBundle/Entity/MiscCost.php" />
         <option value="$PROJECT_DIR$/src/MiscCostBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/CheckInBundle/Controller/ManageController.php" />
         <option value="$PROJECT_DIR$/src/FuelFillUpBundle/Controller/ManageController.php" />
@@ -102,6 +89,7 @@
         <option value="$PROJECT_DIR$/src/FuelFillUpBundle/Entity/FillUp.php" />
         <option value="$PROJECT_DIR$/src/CheckInBundle/Entity/CheckIn.php" />
         <option value="$PROJECT_DIR$/src/FuelFillUpBundle/Resources/config/doctrine/FillUp.orm.xml" />
+        <option value="$PROJECT_DIR$/src/MiscCostBundle/Entity/MiscCost.php" />
       </list>
     </option>
   </component>
@@ -177,46 +165,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VehicleTracker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VehicleTracker" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MiscCostBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VehicleTracker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VehicleTracker" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MiscCostBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -331,7 +279,7 @@
       <workItem from="1465563222193" duration="16586000" />
       <workItem from="1465617449093" duration="10217000" />
       <workItem from="1465674790667" duration="1108000" />
-      <workItem from="1465704849936" duration="7008000" />
+      <workItem from="1465704849936" duration="8808000" />
     </task>
     <task id="LOCAL-00001" summary="Added manage fuel fill up functionality and testing methods for fuel fill up managing">
       <created>1465141003259</created>
@@ -431,13 +379,24 @@
       <option name="project" value="LOCAL" />
       <updated>1465725104359</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Bug fixes to the database mappings - Changed decimal types in fuel fill ups to float">
+      <created>1465725186518</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1465725186518</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Bug fixes to Entity classes - changed the serialization fields">
+      <created>1465736120551</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1465736120551</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unit_Tests - 2016.06.11 at 01h 33m 41s.xml">
-      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="Unit_Tests - 2016.06.11 at 11h 57m 09s.xml">
       <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
@@ -465,9 +424,12 @@
     <history-entry file="Unit_Tests - 2016.06.12 at 15h 22m 31s.xml">
       <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="Unit_Tests - 2016.06.12 at 18h 25m 50s.xml">
+      <configuration name="Unit Tests" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80421000" />
+    <option name="totallyTimeSpent" value="82221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -514,7 +476,8 @@
     <MESSAGE value="Bug fixes to the database mappings" />
     <MESSAGE value="Bug fixes to the database mappings and added the get names controller method to the vehicles bundle" />
     <MESSAGE value="Bug fixes to the database mappings - Changed decimal types in fuel fill ups to float" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes to the database mappings - Changed decimal types in fuel fill ups to float" />
+    <MESSAGE value="Bug fixes to Entity classes - changed the serialization fields" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes to Entity classes - changed the serialization fields" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -523,13 +486,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/MiscCostBundle/Entity/MiscCost.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CheckInBundle/DataFixtures/ORM/LoadTestCheckInData.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-612">
@@ -848,14 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FuelFillUpBundle/Entity/FillUp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="284" column="5" selection-start-line="284" selection-start-column="5" selection-end-line="284" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/FuelFillUpBundle/Resources/config/doctrine/FillUp.orm.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -880,9 +828,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/FuelFillUpBundle/Entity/FillUp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="285" column="0" selection-start-line="285" selection-start-column="0" selection-end-line="285" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MiscCostBundle/Entity/MiscCost.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MiscCostBundle/Controller/ManageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
+        <state relative-caret-position="238">
           <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
           <folding />
         </state>
