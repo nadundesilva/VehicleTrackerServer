@@ -1,4 +1,4 @@
-report_mileague:
-    path:     /mileage/
-    defaults: { _controller: ReportBundle:FuelFillUp:mileage }
-    methods:  ['GET']
+report_vehicle_mileague:
+    path:     /fuel/consumption/
+    defaults: { _controller: ReportBundle:FuelFillUp:fuelConsumption }
+    methods:  ['POST']

@@ -13,18 +13,88 @@ class FuelFillUpController extends Controller {
      * @param Request $request
      * @return Response
      */
-    public function mileageAction(Request $request) {
+    public function fuelConsumptionAction(Request $request) {
         $request_data = json_decode($request->getContent());
         if ($user = $this->get('login_authenticator')->authenticateUser()) {
-            if (isset($request_data) && isset($request_data->report_criteria)) {
-                $query = $this->getDoctrine()->getManager()
-                    ->createQuery('SELECT ');
+            if (isset($request_data) && isset($request_data->criteria) && isset($request_data->criteria->vehicles)) {
+                $vehicles = $request_data->criteria->vehicles;
+
+                $query = 'SELECT vehicle.licensePlateNo AS license_plate_no, vehicle.name AS name, YEAR(fillUp.timestamp) AS year, MONTH(fillUp.timestamp) AS month, fillUp.litres / 30 AS litres_per_day FROM FuelFillUpBundle:FillUp AS fillUp INNER JOIN fillUp.vehicle AS vehicle INNER JOIN vehicle.owner AS owner WHERE vehicle.owner = :username AND fillUp.timestamp > :start_date AND fillUp.timestamp < :end_date';
+                if (sizeof($vehicles) > 0) {
+                    $query .= ' AND (';
+                }
+                for ($i = 0 ; $i < sizeof($vehicles) ; $i++) {
+                    if ($i != 0 ) {
+                        $query .= ' OR';
+                    }
+                    $query .= ' vehicle.licensePlateNo = :license_plate_no' . $i;
+                }
+                if (sizeof($vehicles) > 0) {
+                    $query .= ') ';
+                }
+                $query .= ' GROUP BY license_plate_no, year, month';
+
+                $result = $this->getDoctrine()->getManager()
+                    ->createQuery($query)
+                    ->setParameter('username', $user->getUsername())
+                    ->setParameter('start_date', $request_data->criteria->date->start_date)
+                    ->setParameter('end_date', $request_data->criteria->date->end_date);
+                for ($i = 0 ; $i < sizeof($vehicles) ; $i++) {
+                    $result = $result->setParameter('license_plate_no' . $i, $vehicles[$i]);
+                }
+                $result = $result->getArrayResult();
+
+                $diff = strtotime($request_data->criteria->date->end_date) - strtotime($request_data->criteria->date->start_date);
+                $years = floor($diff / (365*60*60*24));
+                $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                if ($months > 12) {
+                    $increment = 'YEAR';
+                } else {
+                    $increment = 'MONTH';
+                }
+
+                $series = [];
+                $data = [];
+                for ($i = 0 ; $i < sizeof($result) ; ) {
+                    $series[] = $result[$i]['name'];
+                    $series_data = [];
+                    for ($time = strtotime($request_data->criteria->date->start_date) ; $time < strtotime($request_data->criteria->date->end_date) ; $time = strtotime("+1 month", $time)) {
+                        if ($increment == 'MONTH') {
+                            if ($i < sizeof($result) && ($result[$i]['month'] == date("F", $time) || $result[$i]['year'] == date("Y", $time))) {
+                                $series_data[] = $result[$i]['litres_per_day'];
+                                $i++;
+                            } else {
+                                $series_data[] = 0;
+                            }
+                        } else {
+                            if ($i < sizeof($result) && ($result[$i]['year'] == date("Y", $time))) {
+                                $series_data[] = $result[$i]['litres_per_day'];
+                                $i++;
+                            } else {
+                                $series_data[] = 0;
+                            }
+                        }
+                    }
+                    $data[] = $series_data;
+                }
+                $labels = [];
+                for ($time = strtotime($request_data->criteria->date->start_date) ; $time < strtotime($request_data->criteria->date->end_date) ; $time = strtotime("+1 month", $time)) {
+                    if ($increment == 'MONTH') {
+                        $labels[] = date("Y-m", $time);
+                    } else {
+                        $labels[] = date("Y", $time);
+                    }
+                }
+                $report = array(
+                    'series' => $series,
+                    'labels' => $labels,
+                    'data' => $data
+                );
+
+                $response_text = $this->get('constants')->response->STATUS_SUCCESS;
             } else {
-                $query = $this->getDoctrine()->getManager()
-                    ->createQuery('SELECT ');
+                $response_text = $this->get('constants')->response->STATUS_NO_ARGUMENTS_PROVIDED;
             }
-            $report = $query->getArrayResult();
-            $response_text = $this->get('constants')->response->STATUS_SUCCESS;
         } else {
             $response_text = $this->get('constants')->response->STATUS_USER_NOT_LOGGED_IN;
         }

@@ -8,9 +8,14 @@ vehicle_add:
     defaults: { _controller: VehicleBundle:Manage:create }
     methods:  ['POST']
 
-vehicle_license_plate_no_get_all:
+vehicle_name_get_all:
     path:     /name/
     defaults: { _controller: VehicleBundle:View:getAllNames }
+    methods:  ['GET']
+
+vehicle_owned_name_get_all:
+    path:     /owned/name/
+    defaults: { _controller: VehicleBundle:View:getAllOwnedNames }
     methods:  ['GET']
 
 vehicle_get:

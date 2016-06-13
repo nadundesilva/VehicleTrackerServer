@@ -84,7 +84,7 @@ class ViewController extends Controller {
     }
 
     /**
-     * Returns all the license plate nos of all the existing vehicles
+     * Returns all the names of all the existing vehicles
      *
      * @return Response
      */
@@ -107,6 +107,32 @@ class ViewController extends Controller {
         }
         if(isset($managed_vehicles)) {
             $response_body[$this->get('constants')->response->MANAGED_VEHICLES] = $managed_vehicles;
+        }
+        $response = new Response($this->get('jms_serializer')->serialize($response_body, 'json', SerializationContext::create()->setGroups(array('names_list'))));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * Returns all the names of all the existing owned vehicles
+     *
+     * @return Response
+     */
+    public function getAllOwnedNamesAction() {
+        if ($user = $this->get('login_authenticator')->authenticateUser()) {
+            $owned_vehicles = $this->getDoctrine()->getManager()
+                ->createQuery('SELECT DISTINCT vehicle.licensePlateNo AS license_plate_no, vehicle.name AS name FROM VehicleBundle:Vehicle AS vehicle INNER JOIN vehicle.owner AS owner WHERE owner.username = :owner')
+                ->setParameter('owner', $user->getUsername())
+                ->getArrayResult();
+
+            $response_text = $this->get('constants')->response->STATUS_SUCCESS;
+        } else {
+            $response_text = $this->get('constants')->response->STATUS_USER_NOT_LOGGED_IN;
+        }
+
+        $response_body = array($this->get('constants')->response->STATUS => $response_text);
+        if(isset($owned_vehicles)) {
+            $response_body[$this->get('constants')->response->OWNED_VEHICLES] = $owned_vehicles;
         }
         $response = new Response($this->get('jms_serializer')->serialize($response_body, 'json', SerializationContext::create()->setGroups(array('names_list'))));
         $response->headers->set('Content-Type', 'application/json');
