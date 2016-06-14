@@ -58,7 +58,7 @@ class AuthenticationControllerTest extends BaseFunctionalTest {
         }
 
         // Requesting
-        $this->client->request('POST', '/sign-up', array(), array(),
+        $this->client->request('POST', '/sign-up/', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -164,7 +164,7 @@ class AuthenticationControllerTest extends BaseFunctionalTest {
         }
 
         // Requesting
-        $this->client->request('POST', '/login', array(), array(),
+        $this->client->request('POST', '/login/', array(), array(),
             array(
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
@@ -253,7 +253,7 @@ class AuthenticationControllerTest extends BaseFunctionalTest {
         $this->session->set($this->constants->session->USERNAME, $logged_in_username);
 
         // Requesting
-        $this->client->request('GET', '/logout');
+        $this->client->request('GET', '/logout/');
         $response = $this->client->getResponse();
 
         // Assertions
