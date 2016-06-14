@@ -53,8 +53,9 @@ class DriverController extends Controller {
             if (isset($vehicle)) {
                 if ($vehicle->getOwner()->getUsername() == $user->getUsername()) {
                     $users = $this->getDoctrine()->getManager()
-                        ->createQuery('SELECT DISTINCT driver.username AS username, driver.firstName AS first_name, driver.lastName AS last_name FROM VehicleBundle:Vehicle AS vehicle JOIN vehicle.driver AS driver WHERE driver.username LIKE :username')
-                        ->setParameter('username', '%' . $username_search_key . '%')
+                        ->createQuery('SELECT DISTINCT driver.username AS username, driver.firstName AS first_name, driver.lastName AS last_name FROM VehicleBundle:Vehicle AS vehicle JOIN vehicle.driver AS driver WHERE driver.username != :owner AND driver.username LIKE :driver')
+                        ->setParameter('driver', '%' . $username_search_key . '%')
+                        ->setParameter('owner', $user->getUsername())
                         ->getArrayResult();
                     $response_text = $this->get('constants')->response->STATUS_SUCCESS;
                 } else {
@@ -182,6 +183,28 @@ class DriverController extends Controller {
         }
 
         $response = new Response(json_encode(array($this->get('constants')->response->STATUS => $response_text)));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+    
+    public function getAllNamesAction($license_plate_no) {
+        if ($user = $this->get('login_authenticator')->authenticateUser()) {
+            $drivers_list = $this->getDoctrine()->getManager()
+                ->createQuery("SELECT driver.username AS username, CONCAT(driver.firstName, ' ' , driver.lastName) AS name FROM VehicleBundle:Vehicle AS vehicle INNER JOIN vehicle.driver AS driver INNER JOIN vehicle.owner AS owner WHERE owner.username = :owner AND vehicle.licensePlateNo = :license_plate_no")
+                ->setParameter('owner', $user->getUsername())
+                ->setParameter('license_plate_no', $license_plate_no)
+                ->getArrayResult();
+                
+            $response_text = $this->get('constants')->response->STATUS_SUCCESS;
+        } else {
+            $response_text = $this->get('constants')->response->STATUS_USER_NOT_LOGGED_IN;
+        }
+
+        $response_body = array($this->get('constants')->response->STATUS => $response_text);
+        if(isset($drivers_list)) {
+            $response_body[$this->get('constants')->response->DRIVERS] = $drivers_list;
+        }
+        $response = new Response($this->get('jms_serializer')->serialize($response_body, 'json', SerializationContext::create()->setGroups(array('list'))));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }

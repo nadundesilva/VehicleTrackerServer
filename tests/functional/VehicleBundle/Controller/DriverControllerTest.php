@@ -172,7 +172,7 @@ class DriverControllerTest extends BaseFunctionalTest {
              *
              * The session should exist
              */
-            'Success' => array(true, 'TEST-LPN00', 'test', $constants->response->STATUS_SUCCESS, 2),
+            'Success' => array(true, 'TEST-LPN00', 'test', $constants->response->STATUS_SUCCESS, 1),
         );
     }
 

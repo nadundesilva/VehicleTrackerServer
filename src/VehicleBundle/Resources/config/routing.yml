@@ -52,3 +52,8 @@ vehicle_driver_remove:
     path:     /{license_plate_no}/driver/{username}/
     defaults: { _controller: VehicleBundle:Driver:remove }
     methods:  ['DELETE']
+
+vehicle_driver_name_get_all:
+    path:     /{license_plate_no}/driver/name/
+    defaults: { _controller: VehicleBundle:Driver:getAllNames }
+    methods:  ['GET']

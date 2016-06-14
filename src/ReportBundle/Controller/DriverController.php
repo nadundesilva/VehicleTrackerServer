@@ -6,41 +6,42 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class FuelFillUpController extends Controller {
+class DriverController extends Controller {
     /**
      * Generate report for fuel fill up costs over a time period
      *
      * @param Request $request
      * @return Response
      */
-    public function fuelCostAction(Request $request) {
+    public function fuelConsumptionAction(Request $request) {
         $request_data = json_decode($request->getContent());
         if ($user = $this->get('login_authenticator')->authenticateUser()) {
-            if (isset($request_data) && isset($request_data->criteria) && isset($request_data->criteria->vehicles) && isset($request_data->criteria->date) && isset($request_data->criteria->date->start_date) && isset($request_data->criteria->date->end_date)) {
-                $vehicles = $request_data->criteria->vehicles;
+            if (isset($request_data) && isset($request_data->criteria) && isset($request_data->criteria->vehicle) && isset($request_data->criteria->vehicle->license_plate_no) && isset($request_data->criteria->vehicle->drivers) && isset($request_data->criteria->date) && isset($request_data->criteria->date->start_date) && isset($request_data->criteria->date->end_date)) {
+                $drivers = $request_data->criteria->vehicle->drivers;
 
-                $query = 'SELECT vehicle.licensePlateNo AS license_plate_no, vehicle.name AS name, YEAR(fillUp.timestamp) AS year, MONTH(fillUp.timestamp) AS month, fillUp.price AS price FROM FuelFillUpBundle:FillUp AS fillUp INNER JOIN fillUp.vehicle AS vehicle INNER JOIN vehicle.owner AS owner WHERE vehicle.owner = :username AND fillUp.timestamp > :start_date AND fillUp.timestamp < :end_date';
-                if (sizeof($vehicles) > 0) {
+                $query = "SELECT CONCAT(driver.firstName, ' ', driver.lastName) AS name, YEAR(fillUp.timestamp) AS year, MONTH(fillUp.timestamp) AS month, fillUp.litres AS litres FROM FuelFillUpBundle:FillUp AS fillUp INNER JOIN fillUp.vehicle AS vehicle INNER JOIN vehicle.owner AS owner INNER JOIN vehicle.driver AS driver WHERE vehicle.owner = :username AND fillUp.timestamp > :start_date AND fillUp.timestamp < :end_date AND vehicle.licensePlateNo = :license_plate_no";
+                if (sizeof($drivers) > 0) {
                     $query .= ' AND (';
                 }
-                for ($i = 0 ; $i < sizeof($vehicles) ; $i++) {
+                for ($i = 0 ; $i < sizeof($drivers) ; $i++) {
                     if ($i != 0 ) {
                         $query .= ' OR';
                     }
-                    $query .= ' vehicle.licensePlateNo = :license_plate_no' . $i;
+                    $query .= ' driver.username = :driver' . $i;
                 }
-                if (sizeof($vehicles) > 0) {
+                if (sizeof($drivers) > 0) {
                     $query .= ') ';
                 }
-                $query .= ' GROUP BY license_plate_no, year, month';
+                $query .= ' GROUP BY driver, year, month';
 
                 $result = $this->getDoctrine()->getManager()
                     ->createQuery($query)
                     ->setParameter('username', $user->getUsername())
                     ->setParameter('start_date', $request_data->criteria->date->start_date)
-                    ->setParameter('end_date', $request_data->criteria->date->end_date);
-                for ($i = 0 ; $i < sizeof($vehicles) ; $i++) {
-                    $result = $result->setParameter('license_plate_no' . $i, $vehicles[$i]);
+                    ->setParameter('end_date', $request_data->criteria->date->end_date)
+                    ->setParameter('license_plate_no', $request_data->criteria->vehicle->license_plate_no);
+                for ($i = 0 ; $i < sizeof($drivers) ; $i++) {
+                    $result = $result->setParameter('driver' . $i, $drivers[$i]);
                 }
                 $result = $result->getArrayResult();
 
@@ -61,14 +62,14 @@ class FuelFillUpController extends Controller {
                     for ($time = strtotime($request_data->criteria->date->start_date) ; $time < strtotime($request_data->criteria->date->end_date) ; $time = strtotime("+1 month", $time)) {
                         if ($increment == 'MONTH') {
                             if ($i < sizeof($result) && ($result[$i]['month'] == date("F", $time) || $result[$i]['year'] == date("Y", $time))) {
-                                $series_data[] = $result[$i]['price'];
+                                $series_data[] = $result[$i]['litres'];
                                 $i++;
                             } else {
                                 $series_data[] = 0;
                             }
                         } else {
                             if ($i < sizeof($result) && ($result[$i]['year'] == date("Y", $time))) {
-                                $series_data[] = $result[$i]['price'];
+                                $series_data[] = $result[$i]['litres'];
                                 $i++;
                             } else {
                                 $series_data[] = 0;
@@ -108,3 +109,4 @@ class FuelFillUpController extends Controller {
         return $response;
     }
 }
+

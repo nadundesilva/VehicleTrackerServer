@@ -1,4 +1,19 @@
-report_vehicle_mileague:
+report_vehicle_fuel_consumption:
     path:     /fuel/consumption/
     defaults: { _controller: ReportBundle:FuelFillUp:fuelConsumption }
+    methods:  ['POST']
+
+report_misc_cost:
+    path:     /misc-cost/aggregate/
+    defaults: { _controller: ReportBundle:MiscCost:aggregateMiscCost }
+    methods:  ['POST']
+
+report_vehicle_misc_cost:
+    path:     /vehicle/misc-cost/
+    defaults: { _controller: ReportBundle:Vehicle:miscCost }
+    methods:  ['POST']
+
+report_vehicle_driver_fuel_consumption:
+    path:     /vehicle/driver/misc-cost/
+    defaults: { _controller: ReportBundle:Driver:fuelConsumption }
     methods:  ['POST']

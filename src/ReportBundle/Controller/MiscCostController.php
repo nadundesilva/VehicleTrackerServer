@@ -6,20 +6,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class FuelFillUpController extends Controller {
+class MiscCostController extends Controller {
     /**
-     * Generate report for fuel fill up costs over a time period
+     * Generate report for miscellaneous costs over a time period
      *
      * @param Request $request
      * @return Response
      */
-    public function fuelCostAction(Request $request) {
+    public function aggregateMiscCostAction(Request $request) {
         $request_data = json_decode($request->getContent());
         if ($user = $this->get('login_authenticator')->authenticateUser()) {
             if (isset($request_data) && isset($request_data->criteria) && isset($request_data->criteria->vehicles) && isset($request_data->criteria->date) && isset($request_data->criteria->date->start_date) && isset($request_data->criteria->date->end_date)) {
                 $vehicles = $request_data->criteria->vehicles;
 
-                $query = 'SELECT vehicle.licensePlateNo AS license_plate_no, vehicle.name AS name, YEAR(fillUp.timestamp) AS year, MONTH(fillUp.timestamp) AS month, fillUp.price AS price FROM FuelFillUpBundle:FillUp AS fillUp INNER JOIN fillUp.vehicle AS vehicle INNER JOIN vehicle.owner AS owner WHERE vehicle.owner = :username AND fillUp.timestamp > :start_date AND fillUp.timestamp < :end_date';
+                $query = 'SELECT vehicle.licensePlateNo AS license_plate_no, vehicle.name AS name, YEAR(miscCost.timestamp) AS year, MONTH(miscCost.timestamp) AS month, miscCost.value AS value FROM MiscCostBundle:MiscCost AS miscCost INNER JOIN miscCost.vehicle AS vehicle INNER JOIN vehicle.owner AS owner WHERE vehicle.owner = :username AND miscCost.timestamp > :start_date AND miscCost.timestamp < :end_date';
                 if (sizeof($vehicles) > 0) {
                     $query .= ' AND (';
                 }
@@ -61,14 +61,14 @@ class FuelFillUpController extends Controller {
                     for ($time = strtotime($request_data->criteria->date->start_date) ; $time < strtotime($request_data->criteria->date->end_date) ; $time = strtotime("+1 month", $time)) {
                         if ($increment == 'MONTH') {
                             if ($i < sizeof($result) && ($result[$i]['month'] == date("F", $time) || $result[$i]['year'] == date("Y", $time))) {
-                                $series_data[] = $result[$i]['price'];
+                                $series_data[] = $result[$i]['value'];
                                 $i++;
                             } else {
                                 $series_data[] = 0;
                             }
                         } else {
                             if ($i < sizeof($result) && ($result[$i]['year'] == date("Y", $time))) {
-                                $series_data[] = $result[$i]['price'];
+                                $series_data[] = $result[$i]['value'];
                                 $i++;
                             } else {
                                 $series_data[] = 0;
