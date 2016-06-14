@@ -1,6 +1,6 @@
 report_vehicle_fuel_consumption:
     path:     /fuel/consumption/
-    defaults: { _controller: ReportBundle:FuelFillUp:fuelConsumption }
+    defaults: { _controller: ReportBundle:FuelFillUp:fuelCost }
     methods:  ['POST']
 
 report_misc_cost:
