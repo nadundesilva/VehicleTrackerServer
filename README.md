@@ -1,5 +1,9 @@
-Vehicle Tracker
-===============
+Vehicle Manager Server
+======================
+
+| Vehicle Manager Server Branch  | Travis CI Build Status |
+| :----------------------------- | :--------------------- |
+| master                         | [![Build Status](https://travis-ci.org/nadundesilva/vehicle-manager-server.svg?branch=master)](https://travis-ci.org/nadundesilva/vehicle-manager-server)|
 
 This is a vehicle and fuel tracker designed for the module CS3202 - Software Engineering Project.
 
